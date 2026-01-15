@@ -1,0 +1,218 @@
+<!DOCTYPE html><html class="light" lang="en" style="width: 1280px; height: 1024px; overflow: hidden; position: relative;"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>ContentOS - Register</title>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#131d24",
+                        "on-secondary-fixed": "#00174b",
+                        "on-surface": "#041b3c",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#dae4ee",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#fcfcff",
+                        "inverse-primary": "#adc6ff",
+                        "surface-container-low": "#f1f3ff",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed-variant": "#003ea8",
+                        "on-secondary-container": "#fefcff",
+                        "primary-container": "#2170e4",
+                        "secondary-fixed": "#dbe1ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#041b3c",
+                        "surface-tint": "#005ac2",
+                        "primary": "#0058be",
+                        "on-primary-fixed": "#001a42",
+                        "surface-dim": "#cadaff",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#004395",
+                        "primary-fixed": "#d8e2ff",
+                        "surface-container-highest": "#d7e2ff",
+                        "on-tertiary-fixed-variant": "#3e4851",
+                        "secondary-container": "#316bf3",
+                        "tertiary-container": "#6c767f",
+                        "background": "#f9f9ff",
+                        "on-surface-variant": "#424754",
+                        "tertiary-fixed-dim": "#bec8d2",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#c2c6d6",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#d7e2ff",
+                        "surface-bright": "#f9f9ff",
+                        "surface": "#f9f9ff",
+                        "outline": "#727785",
+                        "surface-container": "#e8edff",
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "surface-container-high": "#e0e8ff",
+                        "on-primary-container": "#fefcff",
+                        "primary-fixed-dim": "#adc6ff",
+                        "inverse-on-surface": "#edf0ff",
+                        "inverse-surface": "#1d3052",
+                        "secondary": "#0051d5",
+                        "tertiary": "#535d66"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "xl": "40px",
+                        "container-max": "1440px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "gutter": "20px",
+                        "md": "16px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["JetBrains Mono"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .input-glow:focus {
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+            border-color: #3B82F6;
+        }
+        .btn-primary {
+            background-color: #2563EB;
+            color: #ffffff;
+        }
+        .btn-primary:hover {
+            background-color: #1D4ED8;
+        }
+        .btn-ghost {
+            background-color: transparent;
+            color: #5B6B82;
+        }
+        .btn-ghost:hover {
+            background-color: #E3F0FC;
+            color: #2563EB;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 25px rgba(23, 43, 77, 0.10);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex antialiased">
+<!-- Split Screen Layout -->
+<div class="flex w-full min-h-screen">
+<!-- Left Side: Visual Area (Hidden on mobile) -->
+<div class="hidden lg:flex lg:w-1/2 relative bg-surface-container-low overflow-hidden items-center justify-center">
+<!-- Background Image -->
+<div class="absolute inset-0 w-full h-full bg-cover bg-center" data-alt="A pristine, high-fidelity 3D abstract composition featuring translucent glass cubes and geometric forms floating in a pale blue and white environment. The lighting is soft, studio-quality, and highly highly reflective, emphasizing the premium, intelligent, and calm aesthetic of the ContentOS brand. Modern corporate minimal style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAK1zCA0HcMSANnEMJ3Ii5d7lM0XMZhB-CfTE5GMGOVOq6guXjIHhcZa0NbA0IJifNiV6oEMHOwPrc4bezPALOigG7O0nd3VDyzkG1gxMDbOScCbf7dmI2RPY_hRlPIkpnAwpfcGe8kXqxLIGviHXthf30OMhra05LmBM7vC6VFZRpI4P7iLAVkh8kiP5NGF7X17TLIaojGxdkEW0UAOOOSgPCSBgDvOvGigb8e-oMN5cEz2hq1DHER')"></div>
+<!-- Overlay Gradient for text readability if needed, though glass card handles it -->
+<div class="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent"></div>
+<!-- Benefit Card Overlay -->
+<div class="relative z-10 glass-card p-xl rounded-xl max-w-md w-full mx-gutter">
+<div class="flex items-center gap-sm mb-md">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">ContentOS</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-md">Start your automated content engine in minutes.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Join the modern content operations platform designed for high-performance teams.</p>
+</div>
+</div>
+<!-- Right Side: Registration Form Area -->
+<div class="w-full lg:w-1/2 flex items-center justify-center p-gutter sm:p-xl bg-surface">
+<div class="w-full max-w-md">
+<!-- Header -->
+<div class="mb-xl text-center lg:text-left">
+<h1 class="font-headline-lg-mobile lg:font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-on-surface mb-sm">Create your account</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Join 10,000+ creators scaling their content with AI.</p>
+</div>
+<!-- Form -->
+<form class="space-y-md">
+<!-- Full Name -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-xs" for="fullName">Full Name</label>
+<input class="w-full h-12 px-md font-body-md text-body-md bg-transparent border border-[#DCE6F0] rounded outline-none transition-all input-glow text-on-surface placeholder-outline" id="fullName" placeholder="Jane Doe" type="text">
+</div>
+<!-- Work Email -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-xs" for="workEmail">Work Email</label>
+<input class="w-full h-12 px-md font-body-md text-body-md bg-transparent border border-[#DCE6F0] rounded outline-none transition-all input-glow text-on-surface placeholder-outline" id="workEmail" placeholder="jane@company.com" type="email">
+</div>
+<!-- Password -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-xs" for="password">Password</label>
+<input class="w-full h-12 px-md font-body-md text-body-md bg-transparent border border-[#DCE6F0] rounded outline-none transition-all input-glow text-on-surface placeholder-outline mb-xs" id="password" placeholder="••••••••" type="password">
+<!-- Strength Indicator -->
+<div class="flex items-center gap-xs mt-sm">
+<div class="h-1 w-full bg-outline-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary w-1/3"></div>
+</div>
+<div class="h-1 w-full bg-outline-variant rounded-full overflow-hidden"></div>
+<div class="h-1 w-full bg-outline-variant rounded-full overflow-hidden"></div>
+</div>
+<p class="font-label-md text-label-md text-outline mt-xs text-right">Weak</p>
+</div>
+<!-- Primary Button -->
+<button class="w-full h-12 mt-lg flex items-center justify-center font-label-md text-label-md rounded btn-primary transition-colors" type="button">
+                        Create account
+                    </button>
+</form>
+<!-- Divider -->
+<div class="flex items-center my-lg">
+<div class="flex-grow border-t border-[#DCE6F0]"></div>
+<span class="px-md font-label-md text-label-md text-outline">OR</span>
+<div class="flex-grow border-t border-[#DCE6F0]"></div>
+</div>
+<!-- Social Auth -->
+<button class="w-full h-12 flex items-center justify-center gap-sm font-label-md text-label-md rounded border border-[#DCE6F0] bg-surface hover:bg-surface-container-low transition-colors text-on-surface" type="button">
+<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+                    Sign up with Google
+                </button>
+<!-- Footer Link -->
+<div class="mt-xl text-center">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Already have an account? 
+                        <a class="text-primary hover:underline font-medium" href="#">Log in</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="snapdom-sandbox" data-snapdom-sandbox="true" aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; width: 0px; height: 0px; overflow: hidden;"></div></body></html>

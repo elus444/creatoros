@@ -1,0 +1,358 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>ContentOS - Workspace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f9f9ff",
+                        "tertiary": "#535d66",
+                        "surface-dim": "#cadaff",
+                        "error-container": "#ffdad6",
+                        "outline": "#727785",
+                        "primary-fixed": "#d8e2ff",
+                        "surface-tint": "#005ac2",
+                        "on-surface-variant": "#424754",
+                        "on-primary-fixed-variant": "#004395",
+                        "inverse-primary": "#adc6ff",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#f9f9ff",
+                        "secondary-fixed": "#dbe1ff",
+                        "on-error": "#ffffff",
+                        "on-secondary-container": "#fefcff",
+                        "inverse-surface": "#1d3052",
+                        "primary-container": "#2170e4",
+                        "surface-container-high": "#e0e8ff",
+                        "primary": "#0058be",
+                        "outline-variant": "#c2c6d6",
+                        "surface-container-low": "#f1f3ff",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed-variant": "#003ea8",
+                        "on-secondary-fixed": "#00174b",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#dae4ee",
+                        "on-primary-fixed": "#001a42",
+                        "primary-fixed-dim": "#adc6ff",
+                        "on-primary-container": "#fefcff",
+                        "on-background": "#041b3c",
+                        "on-tertiary-fixed-variant": "#3e4851",
+                        "tertiary-fixed-dim": "#bec8d2",
+                        "secondary": "#0051d5",
+                        "on-error-container": "#93000a",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#6c767f",
+                        "surface-container": "#e8edff",
+                        "secondary-container": "#316bf3",
+                        "on-tertiary-fixed": "#131d24",
+                        "on-tertiary-container": "#fcfcff",
+                        "surface-variant": "#d7e2ff",
+                        "surface-bright": "#f9f9ff",
+                        "on-surface": "#041b3c",
+                        "inverse-on-surface": "#edf0ff",
+                        "surface-container-highest": "#d7e2ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "20px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "container-max": "1440px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "xl": "40px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Hanken Grotesk"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["JetBrains Mono"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f9f9ff; color: #041b3c; }
+        .glass-panel { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); border: 1px solid #DCE6F0; box-shadow: 0 4px 6px -1px rgba(23, 43, 77, 0.05), 0 2px 4px -1px rgba(23, 43, 77, 0.03); }
+        .minimal-scrollbar::-webkit-scrollbar { width: 6px; }
+        .minimal-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .minimal-scrollbar::-webkit-scrollbar-thumb { background-color: #c2c6d6; border-radius: 10px; }
+        .editor-content:focus { outline: none; }
+        .progressive-reveal { opacity: 0; transform: translateY(10px); animation: reveal 0.5s ease forwards; }
+        @keyframes reveal { to { opacity: 1; transform: translateY(0); } }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+    </style>
+</head>
+<body class="bg-background text-on-background h-screen overflow-hidden flex flex-col font-body-md">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-background text-primary dark:text-primary-fixed font-body-md text-body-md docked full-width top-0 border-b border-outline-variant dark:border-outline flat no shadows flex justify-between items-center h-16 px-gutter w-full sticky top-0 z-50">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">ContentOS</span>
+<div class="hidden md:flex items-center gap-6 ml-8">
+<a class="text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:scale-95 duration-150 px-2 py-1 rounded" href="#">Dashboard</a>
+<a class="text-primary dark:text-primary-fixed font-bold border-b-2 border-primary cursor-pointer active:scale-95 duration-150 px-2 py-1" href="#">Content</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:scale-95 duration-150 px-2 py-1 rounded" href="#">Analytics</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-2 top-1.5 text-on-surface-variant text-sm">search</span>
+<input class="pl-8 pr-3 py-1.5 bg-surface-container-low border border-outline-variant rounded-full text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none w-48 transition-all" placeholder="Search..." type="text">
+</div>
+<button class="p-2 rounded-full hover:bg-surface-container-low text-on-surface-variant transition-colors group">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container-low text-on-surface-variant transition-colors group">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">contrast</span>
+</button>
+<div class="flex items-center gap-2 pl-4 border-l border-outline-variant">
+<span class="text-sm font-medium hidden lg:block">Workspace Selector</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant flex-shrink-0 cursor-pointer">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a creative director in a modern studio setting with warm natural lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwz_KsA2s9ZyLqcQUrtI7PejLncEf90OSS0MTCYuQofCrHO4sV2UD86T-Pcy627vlUPks0okv1Jd8U8x9azqQTqPC9n-HvC0g2h9Ji4uYV8uuqkpsUmCg1OMKy9r8k-TmTtM6GvbJ1tRsz3ZKmhTrXAvCvMkkdI4f7HzSqw2btXYxpDTbCiG0GKZyxV9ipiwEzxOW9rvV7o2bFkDdFM6yisWrAD2JbyWVUkbr2EpjD4D652zykknO7">
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Workspace -->
+<main class="flex-1 flex overflow-hidden p-md gap-md">
+<!-- Left Panel: Research & Strategy -->
+<aside class="w-80 flex-shrink-0 flex flex-col gap-sm overflow-y-auto minimal-scrollbar">
+<!-- Agent Indicator -->
+<div class="bg-[#E3F0FC] text-[#2563EB] px-3 py-1.5 rounded-full inline-flex items-center gap-2 w-fit mb-2 font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]">search</span>
+                Research Agent Active
+            </div>
+<div class="glass-panel rounded-lg p-md mb-2 progressive-reveal">
+<h3 class="font-headline-sm text-headline-sm border-b border-outline-variant pb-2 mb-3 flex justify-between items-center cursor-pointer group">
+                    Trend Analysis
+                    <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">expand_more</span>
+</h3>
+<div class="space-y-4">
+<div>
+<div class="text-xs text-on-surface-variant mb-1 font-medium uppercase tracking-wider">Topic</div>
+<div class="font-medium text-sm">Future of AI in UI Design 2024</div>
+</div>
+<div>
+<div class="text-xs text-on-surface-variant mb-1 font-medium uppercase tracking-wider">Trend Score</div>
+<div class="flex items-center gap-2">
+<div class="w-full bg-surface-container-high rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 85%"></div>
+</div>
+<span class="text-xs font-bold text-primary">85/100</span>
+</div>
+</div>
+</div>
+</div>
+<div class="glass-panel rounded-lg p-md mb-2 progressive-reveal delay-100">
+<h3 class="font-headline-sm text-headline-sm border-b border-outline-variant pb-2 mb-3 flex justify-between items-center cursor-pointer group">
+                    Research Data
+                    <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">expand_less</span>
+</h3>
+<div class="space-y-4">
+<div>
+<div class="text-xs text-on-surface-variant mb-1 font-medium uppercase tracking-wider">Key Facts</div>
+<ul class="text-sm space-y-2">
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-[16px] text-primary mt-0.5">check_circle</span> 60% of designers using AI daily.</li>
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-[16px] text-primary mt-0.5">check_circle</span> Generative UI is the top trend.</li>
+</ul>
+</div>
+<div>
+<div class="text-xs text-on-surface-variant mb-1 font-medium uppercase tracking-wider">Audience Insights</div>
+<div class="bg-surface-container-low p-2 rounded text-sm border border-outline-variant">
+                            Target audience values practical implementation over theoretical concepts.
+                        </div>
+</div>
+</div>
+</div>
+<!-- Strategy Agent Indicator -->
+<div class="bg-[#EAE4FF] text-[#4F46E5] px-3 py-1.5 rounded-full inline-flex items-center gap-2 w-fit mb-2 font-label-md text-label-md progressive-reveal delay-200 mt-4">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">bar_chart</span>
+                Strategy Agent Active
+            </div>
+<div class="glass-panel rounded-lg p-md progressive-reveal delay-300">
+<h3 class="font-headline-sm text-headline-sm border-b border-outline-variant pb-2 mb-3 flex justify-between items-center">
+                    Content Strategy
+                </h3>
+<div class="space-y-3">
+<div>
+<div class="text-xs text-on-surface-variant mb-1 font-medium uppercase tracking-wider">Primary Angle</div>
+<div class="text-sm font-medium">"AI as a Co-creator, not a replacement."</div>
+</div>
+<div>
+<div class="text-xs text-on-surface-variant mb-1 font-medium uppercase tracking-wider">Suggested Hooks</div>
+<div class="flex flex-wrap gap-2">
+<span class="bg-surface-container px-2 py-1 rounded text-xs border border-outline-variant cursor-pointer hover:bg-primary-fixed transition-colors">Question-based</span>
+<span class="bg-surface-container px-2 py-1 rounded text-xs border border-outline-variant cursor-pointer hover:bg-primary-fixed transition-colors">Stat-driven</span>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Center Panel: Editor -->
+<section class="flex-1 glass-panel rounded-xl flex flex-col overflow-hidden relative shadow-sm border border-[#DCE6F0]">
+<!-- Editor Header -->
+<div class="h-14 border-b border-outline-variant bg-surface-container-lowest flex items-center justify-between px-lg flex-shrink-0">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-outline">description</span>
+<input class="font-headline-sm text-headline-sm bg-transparent border-none focus:ring-0 p-0 text-on-background placeholder-outline-variant w-64" placeholder="Document Title" type="text" value="AI UI Design Trends Script">
+</div>
+<div class="flex items-center gap-4">
+<div class="text-xs text-on-surface-variant flex items-center gap-3 border-r border-outline-variant pr-4">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">schedule</span> ~3m 45s</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">match_word</span> 450 words</span>
+</div>
+<button class="text-secondary hover:bg-[#E3F0FC] px-3 py-1.5 rounded transition-colors text-sm font-medium">Save</button>
+<button class="text-secondary hover:bg-[#E3F0FC] px-3 py-1.5 rounded transition-colors text-sm font-medium">Export</button>
+<button class="bg-[#2563EB] text-white px-4 py-1.5 rounded font-medium text-sm hover:bg-primary-container transition-colors shadow-sm">Approve</button>
+</div>
+</div>
+<!-- Editor Toolbar -->
+<div class="h-10 border-b border-outline-variant bg-surface-container-low flex items-center px-lg gap-2 overflow-x-auto minimal-scrollbar">
+<button class="p-1 rounded hover:bg-surface-container-high text-on-surface-variant"><span class="material-symbols-outlined text-sm">format_bold</span></button>
+<button class="p-1 rounded hover:bg-surface-container-high text-on-surface-variant"><span class="material-symbols-outlined text-sm">format_italic</span></button>
+<button class="p-1 rounded hover:bg-surface-container-high text-on-surface-variant"><span class="material-symbols-outlined text-sm">format_underlined</span></button>
+<div class="w-px h-4 bg-outline-variant mx-1"></div>
+<button class="p-1 rounded hover:bg-surface-container-high text-on-surface-variant"><span class="material-symbols-outlined text-sm">format_h1</span></button>
+<button class="p-1 rounded hover:bg-surface-container-high text-on-surface-variant"><span class="material-symbols-outlined text-sm">format_h2</span></button>
+<div class="w-px h-4 bg-outline-variant mx-1"></div>
+<button class="p-1 rounded hover:bg-surface-container-high text-on-surface-variant"><span class="material-symbols-outlined text-sm">format_list_bulleted</span></button>
+</div>
+<!-- Editor Canvas -->
+<div class="flex-1 overflow-y-auto minimal-scrollbar p-xl bg-surface-container-lowest">
+<div class="max-w-3xl mx-auto space-y-8">
+<!-- Section: HOOK -->
+<div class="relative group">
+<div class="absolute -left-16 top-1 text-[10px] font-label-md text-primary font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">HOOK</div>
+<div class="absolute -left-4 top-0 bottom-0 w-1 bg-primary rounded-full opacity-50"></div>
+<div class="editor-content text-lg leading-relaxed font-medium">
+                            Think AI is going to steal your design job? Think again. By the end of this video, you'll see why the designers who master AI are the ones who will write the rules for the next decade of digital products.
+                        </div>
+</div>
+<!-- Section: BODY -->
+<div class="relative group">
+<div class="absolute -left-16 top-1 text-[10px] font-label-md text-tertiary font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">BODY</div>
+<div class="absolute -left-4 top-0 bottom-0 w-1 bg-outline-variant rounded-full opacity-30"></div>
+<div class="editor-content text-base leading-relaxed text-on-surface-variant">
+<p class="mb-4">We are shifting from static interfaces to dynamic, generative UI. It's not just about creating components anymore; it's about designing systems that can assemble themselves based on user intent.</p>
+<p>Look at the latest tools. They aren't replacing the need for good typography or structural hierarchy. They are amplifying our ability to iterate rapidly.</p>
+</div>
+</div>
+<!-- Section: VALUE -->
+<div class="relative group">
+<div class="absolute -left-16 top-1 text-[10px] font-label-md text-[#0051d5] font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">VALUE</div>
+<div class="absolute -left-4 top-0 bottom-0 w-1 bg-[#0051d5] rounded-full opacity-30"></div>
+<div class="editor-content text-base leading-relaxed text-on-surface-variant">
+<p>The real secret? Treat AI as a highly competent junior designer. Give it clear constraints, strong brand anchors, and let it generate the variations. Your job elevates to Art Direction.</p>
+</div>
+</div>
+<!-- Section: CTA -->
+<div class="relative group">
+<div class="absolute -left-16 top-1 text-[10px] font-label-md text-tertiary font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">CTA</div>
+<div class="absolute -left-4 top-0 bottom-0 w-1 bg-outline-variant rounded-full opacity-30"></div>
+<div class="editor-content text-base leading-relaxed font-medium text-on-background">
+<p>Want to see the exact prompts I use to generate UI components? Hit subscribe and check the link in the description for my free prompt guide.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Panel: AI Copilot -->
+<aside class="w-80 flex-shrink-0 flex flex-col gap-md overflow-y-auto minimal-scrollbar">
+<!-- Agent Indicator -->
+<div class="bg-[#d8e2ff] text-[#001a42] px-3 py-1.5 rounded-full inline-flex items-center gap-2 w-fit mb-0 font-label-md text-label-md shadow-sm border border-[#adc6ff]">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">edit_document</span>
+                Content Copilot
+            </div>
+<div class="glass-panel rounded-xl p-0 flex flex-col h-full border-primary-fixed-dim">
+<div class="p-md border-b border-outline-variant bg-surface-container-lowest rounded-t-xl">
+<h3 class="font-headline-sm text-headline-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">auto_awesome</span>
+                        AI Actions
+                    </h3>
+</div>
+<div class="p-md space-y-6 overflow-y-auto flex-1 minimal-scrollbar">
+<!-- Rewrite Tools -->
+<div>
+<h4 class="text-xs font-bold uppercase text-tertiary mb-3 tracking-wider">Rewrite Selected Text</h4>
+<div class="grid grid-cols-2 gap-2">
+<button class="py-2 px-3 bg-surface border border-outline-variant rounded hover:border-primary hover:text-primary transition-all text-xs font-medium flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[14px]">bolt</span> Engaging
+                            </button>
+<button class="py-2 px-3 bg-surface border border-outline-variant rounded hover:border-primary hover:text-primary transition-all text-xs font-medium flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[14px]">compress</span> Shorter
+                            </button>
+<button class="py-2 px-3 bg-surface border border-outline-variant rounded hover:border-primary hover:text-primary transition-all text-xs font-medium flex items-center justify-center gap-1 col-span-2">
+<span class="material-symbols-outlined text-[14px]">forum</span> Conversational
+                            </button>
+</div>
+</div>
+<!-- AI Suggestions -->
+<div>
+<h4 class="text-xs font-bold uppercase text-tertiary mb-3 tracking-wider flex justify-between items-center">
+                            Suggestions for: Hook
+                            <button class="text-primary hover:bg-primary-fixed p-1 rounded-full"><span class="material-symbols-outlined text-[16px]">refresh</span></button>
+</h4>
+<div class="space-y-3">
+<!-- Suggestion 1 -->
+<div class="bg-surface border border-outline-variant rounded-lg p-3 hover:border-primary-fixed-dim transition-colors group">
+<p class="text-sm text-on-surface-variant italic mb-3">"90% of UI designers are ignoring the tool that will replace them. Here is how to be in the 10%."</p>
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-xs font-medium text-tertiary hover:text-on-surface px-2 py-1">Discard</button>
+<button class="text-xs font-medium bg-[#E3F0FC] text-[#2563EB] hover:bg-[#d8e2ff] px-3 py-1 rounded">Apply</button>
+</div>
+</div>
+<!-- Suggestion 2 -->
+<div class="bg-surface border border-outline-variant rounded-lg p-3 hover:border-primary-fixed-dim transition-colors group">
+<p class="text-sm text-on-surface-variant italic mb-3">"Stop dragging rectangles. Start directing AI. In this video, I'll show you the new workflow of the future."</p>
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-xs font-medium text-tertiary hover:text-on-surface px-2 py-1">Discard</button>
+<button class="text-xs font-medium bg-[#E3F0FC] text-[#2563EB] hover:bg-[#d8e2ff] px-3 py-1 rounded">Apply</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Chat Input -->
+<div class="p-3 border-t border-outline-variant bg-surface-container-lowest rounded-b-xl">
+<div class="relative border border-outline-variant rounded-lg focus-within:border-[#3B82F6] focus-within:shadow-[0_0_0_2px_rgba(59,130,246,0.1)] transition-all bg-surface">
+<input class="w-full bg-transparent border-none focus:ring-0 text-sm py-2.5 pl-3 pr-10 rounded-lg placeholder-outline-variant" placeholder="Ask AI to write or refine..." type="text">
+<button class="absolute right-2 top-2 text-primary hover:text-primary-container p-0.5 rounded-full hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">send</span>
+</button>
+</div>
+</div>
+</div>
+</aside>
+</main>
+</body></html>

@@ -1,0 +1,537 @@
+<!DOCTYPE html><html class="h-full" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>ContentOS - AI Content Generation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface": "#f9f9ff",
+                      "tertiary": "#535d66",
+                      "surface-dim": "#cadaff",
+                      "error-container": "#ffdad6",
+                      "outline": "#727785",
+                      "primary-fixed": "#d8e2ff",
+                      "surface-tint": "#005ac2",
+                      "on-surface-variant": "#424754",
+                      "on-primary-fixed-variant": "#004395",
+                      "inverse-primary": "#adc6ff",
+                      "surface-container-lowest": "#ffffff",
+                      "background": "#f9f9ff",
+                      "secondary-fixed": "#dbe1ff",
+                      "on-error": "#ffffff",
+                      "on-secondary-container": "#fefcff",
+                      "inverse-surface": "#1d3052",
+                      "primary-container": "#2170e4",
+                      "surface-container-high": "#e0e8ff",
+                      "primary": "#0058be",
+                      "outline-variant": "#c2c6d6",
+                      "surface-container-low": "#f1f3ff",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-fixed-variant": "#003ea8",
+                      "on-secondary-fixed": "#00174b",
+                      "on-tertiary": "#ffffff",
+                      "secondary-fixed-dim": "#b4c5ff",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed": "#dae4ee",
+                      "on-primary-fixed": "#001a42",
+                      "primary-fixed-dim": "#adc6ff",
+                      "on-primary-container": "#fefcff",
+                      "on-background": "#041b3c",
+                      "on-tertiary-fixed-variant": "#3e4851",
+                      "tertiary-fixed-dim": "#bec8d2",
+                      "secondary": "#0051d5",
+                      "on-error-container": "#93000a",
+                      "on-primary": "#ffffff",
+                      "tertiary-container": "#6c767f",
+                      "surface-container": "#e8edff",
+                      "secondary-container": "#316bf3",
+                      "on-tertiary-fixed": "#131d24",
+                      "on-tertiary-container": "#fcfcff",
+                      "surface-variant": "#d7e2ff",
+                      "surface-bright": "#f9f9ff",
+                      "on-surface": "#041b3c",
+                      "inverse-on-surface": "#edf0ff",
+                      "surface-container-highest": "#d7e2ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "gutter": "20px",
+                      "lg": "24px",
+                      "sm": "8px",
+                      "container-max": "1440px",
+                      "md": "16px",
+                      "xs": "4px",
+                      "xl": "40px",
+                      "base": "4px"
+              },
+              "fontFamily": {
+                      "display-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "JetBrains Mono"
+                      ],
+                      "headline-sm": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-md": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Hanken Grotesk"
+                      ]
+              },
+              "fontSize": {
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "26px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-sm": [
+                              "18px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "22px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        .pulse-ring {
+            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 88, 190, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 88, 190, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 88, 190, 0); }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .progress-line {
+            position: relative;
+            overflow: hidden;
+        }
+        .progress-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 50%;
+            background: linear-gradient(90deg, transparent, rgba(0, 88, 190, 0.5), transparent);
+            animation: loading-bar 2s infinite linear;
+        }
+        @keyframes loading-bar {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
+
+        .workspace-transition {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .workspace-transition.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface h-full flex overflow-hidden">
+<!-- Overlay Screen -->
+<div class="absolute inset-0 z-50 flex flex-col items-center justify-center bg-surface-container-lowest transition-opacity duration-1000" id="generation-overlay">
+<div class="max-w-2xl w-full px-lg text-center">
+<div class="mb-12 fade-in-up" style="animation-delay: 0.1s;">
+<div class="inline-flex items-center justify-center w-24 h-24 rounded-full bg-primary-fixed-dim/20 text-primary pulse-ring mb-6">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-sm">Generating Content</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Our agents are crafting your piece based on current trends.</p>
+</div>
+<div class="space-y-4 text-left max-w-md mx-auto">
+<!-- Research Agent (Completed) -->
+<div class="flex items-center gap-md p-md rounded-lg bg-surface-container-low border border-outline-variant/30 fade-in-up" style="animation-delay: 0.3s;">
+<div class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-surface-dim text-secondary">
+<span class="material-symbols-outlined text-sm font-bold">check</span>
+</div>
+<div class="flex-grow">
+<div class="flex items-center gap-sm mb-1">
+<span class="px-2 py-0.5 rounded-full bg-surface-dim text-secondary font-label-md text-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">search</span>
+                                Research Agent
+                            </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface">Gathered 14 primary sources on AI design trends.</p>
+</div>
+</div>
+<!-- Strategy Agent (Completed) -->
+<div class="flex items-center gap-md p-md rounded-lg bg-surface-container-low border border-outline-variant/30 fade-in-up" style="animation-delay: 0.6s;">
+<div class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-inverse-primary/30 text-on-primary-fixed-variant">
+<span class="material-symbols-outlined text-sm font-bold">check</span>
+</div>
+<div class="flex-grow">
+<div class="flex items-center gap-sm mb-1">
+<span class="px-2 py-0.5 rounded-full bg-inverse-primary/30 text-on-primary-fixed-variant font-label-md text-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">insights</span>
+                                Strategy Agent
+                            </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface">Identified 'efficiency vs creativity' as strongest angle.</p>
+</div>
+</div>
+<!-- Content Agent (Active) -->
+<div class="flex items-start gap-md p-md rounded-lg bg-surface-container shadow-[0_2px_10px_rgba(23,43,77,0.05)] border border-primary/20 fade-in-up" style="animation-delay: 0.9s;">
+<div class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-primary text-on-primary pulse-ring">
+<div class="w-2 h-2 bg-on-primary rounded-full animate-bounce"></div>
+</div>
+<div class="flex-grow w-full">
+<div class="flex items-center gap-sm mb-1">
+<span class="px-2 py-0.5 rounded-full bg-primary text-on-primary font-label-md text-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">edit_document</span>
+                                Content Agent
+                            </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface mb-3" id="typing-text">Structuring introductory paragraph...</p>
+<div class="w-full h-1 bg-outline-variant/30 rounded-full progress-line"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Workspace (Hidden initially) -->
+<div class="flex w-full h-full workspace-transition" id="main-workspace">
+<!-- SideNav (Shared Component) -->
+<nav class="hidden md:flex flex-col bg-surface-container-low border-r border-outline-variant w-60 h-full py-lg fixed left-0 top-0 z-40">
+<div class="px-lg mb-8">
+<div class="flex items-center gap-3 mb-6">
+<img alt="Project Logo" class="w-8 h-8 rounded-md object-cover" data-alt="A modern, abstract geometric logo icon representing a digital platform, featuring sharp blue and gray interlocking shapes against a bright white background, clean corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjK-DtPky18HSvJNweLBmEjxy13J_Sp5pW-6jvZhPAmzZrzohwIdQFOaauPzSWSS_bLXepJYFxWU_4CovYGJAD3NVEqppC06oxKr6OkG5li9BxFAHQDTI1EEvSl2dv-CeOQJk-OtDJPO4QiHdYnOWa345aYCBwvZfWBa0DEdICWCLBh7oizIT7jl93S5zD5LDDAwkKASQDbr-VDkFI3kmHu-pIfESIhxB5iJi8bSvYDKJDGLSi5EwM">
+<div>
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary">Project Alpha</h2>
+<p class="font-label-md text-label-md text-tertiary">Premium Tier</p>
+</div>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto">
+<ul class="space-y-1 px-4 font-label-md text-label-md">
+<li>
+<a class="group flex items-center gap-3 px-4 py-3 cursor-pointer duration-200 text-on-surface-variant hover:bg-surface-container-high rounded-xl" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                            Dashboard
+                        </a>
+</li>
+<li>
+<a class="group flex items-center gap-3 px-4 py-3 cursor-pointer duration-200 bg-primary-container text-on-primary-container rounded-xl font-bold" href="#">
+<span class="material-symbols-outlined">add_circle</span>
+                            Create
+                        </a>
+</li>
+<li>
+<a class="group flex items-center gap-3 px-4 py-3 cursor-pointer duration-200 text-on-surface-variant hover:bg-surface-container-high rounded-xl" href="#">
+<span class="material-symbols-outlined">trending_up</span>
+                            Trends
+                        </a>
+</li>
+<li>
+<a class="group flex items-center gap-3 px-4 py-3 cursor-pointer duration-200 text-on-surface-variant hover:bg-surface-container-high rounded-xl" href="#">
+<span class="material-symbols-outlined">article</span>
+                            Content
+                        </a>
+</li>
+<li>
+<a class="group flex items-center gap-3 px-4 py-3 cursor-pointer duration-200 text-on-surface-variant hover:bg-surface-container-high rounded-xl" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+                            Analytics
+                        </a>
+</li>
+<li>
+<a class="group flex items-center gap-3 px-4 py-3 cursor-pointer duration-200 text-on-surface-variant hover:bg-surface-container-high rounded-xl" href="#">
+<span class="material-symbols-outlined">robot_2</span>
+                            Automation
+                        </a>
+</li>
+<li>
+<a class="group flex items-center gap-3 px-4 py-3 cursor-pointer duration-200 text-on-surface-variant hover:bg-surface-container-high rounded-xl" href="#">
+<span class="material-symbols-outlined">folder_copy</span>
+                            Projects
+                        </a>
+</li>
+<li>
+<a class="group flex items-center gap-3 px-4 py-3 cursor-pointer duration-200 text-on-surface-variant hover:bg-surface-container-high rounded-xl" href="#">
+<span class="material-symbols-outlined">settings</span>
+                            Settings
+                        </a>
+</li>
+</ul>
+</div>
+<div class="px-4 pt-4 border-t border-outline-variant/50">
+<ul class="space-y-1 font-label-md text-label-md">
+<li>
+<a class="group flex items-center gap-3 px-4 py-3 cursor-pointer duration-200 text-on-surface-variant hover:bg-surface-container-high rounded-xl" href="#">
+<span class="material-symbols-outlined">help</span>
+                            Help
+                        </a>
+</li>
+<li>
+<a class="group flex items-center gap-3 px-4 py-3 cursor-pointer duration-200 text-on-surface-variant hover:bg-surface-container-high rounded-xl" href="#">
+<span class="material-symbols-outlined">logout</span>
+                            Logout
+                        </a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col md:ml-60 w-full min-h-screen bg-surface-bright">
+<!-- TopNavBar (Shared Component) -->
+<header class="flex justify-between items-center h-16 px-gutter w-full sticky top-0 z-30 bg-surface border-b border-outline-variant shadow-[0_2px_4px_rgba(23,43,77,0.05)]">
+<div class="flex items-center gap-4">
+<button class="md:hidden p-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="font-headline-md text-headline-md font-bold text-primary">ContentOS</span>
+</div>
+<div class="flex-1 max-w-md mx-8 hidden md:block relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg font-body-md text-body-md focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all" placeholder="Search resources..." type="text">
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer active:scale-95 duration-150">
+<span class="material-symbols-outlined">contrast</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer active:scale-95 duration-150">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-6 w-px bg-outline-variant mx-2"></div>
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-outline-variant hover:bg-surface-container-low transition-colors font-label-md text-label-md text-on-surface">
+                        Workspace Selector
+                        <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<img alt="User Avatar" class="w-8 h-8 rounded-full border border-outline-variant/50 object-cover" data-alt="A professional headshot of a young creative director, smiling subtly, wearing glasses, soft high-key lighting, bright minimal background, corporate style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAtmytAE4cESaecz5bSn5HgiLGld_4bHLMFoP2vgGRclRnDTtRP4rcd9nHZZnuD7kMsi_f2ZFGPcqlm69vXP5ch--jPB_W7QA5nBIvFV0ua7OFU68u-d01OQ1ayYOui2JcsaaL3sHjiK8buuaskyNoTddHOibPvGOpxln3loHPMxsJZAfAplo5Gf87WtoHUgw-NJqwZxgZdmDhPzE1ZzgPrANIm0xafONj0yhJ26P5naXaGt7rkaUA">
+</div>
+</header>
+<!-- Workspace Content Canvas -->
+<div class="p-lg md:p-xl max-w-container-max mx-auto w-full flex-1 flex flex-col">
+<!-- Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+<div>
+<h1 class="font-display-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-1">AI Design Trends 2024</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Generated by ContentOS Agents • Just now</p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 rounded-lg font-label-md text-label-md text-secondary border border-outline-variant hover:bg-surface-container-low transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">history</span>
+                            Version History
+                        </button>
+<button class="px-4 py-2 rounded-lg font-label-md text-label-md text-on-primary bg-primary hover:bg-primary-container transition-colors flex items-center gap-2 shadow-[0_2px_4px_rgba(23,43,77,0.05)]">
+<span class="material-symbols-outlined text-[18px]">publish</span>
+                            Publish Draft
+                        </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg flex-1">
+<!-- Main Editor Area (Col 8) -->
+<div class="md:col-span-8 bg-surface-container-lowest rounded-xl border border-outline-variant/50 p-xl shadow-[0_2px_4px_rgba(23,43,77,0.05)] flex flex-col relative overflow-hidden">
+<!-- Editor Toolbar -->
+<div class="flex items-center gap-2 pb-4 mb-6 border-b border-outline-variant/30 text-on-surface-variant">
+<button class="p-1.5 hover:bg-surface-container-low rounded"><span class="material-symbols-outlined text-[20px]">format_bold</span></button>
+<button class="p-1.5 hover:bg-surface-container-low rounded"><span class="material-symbols-outlined text-[20px]">format_italic</span></button>
+<div class="w-px h-4 bg-outline-variant mx-1"></div>
+<button class="p-1.5 hover:bg-surface-container-low rounded"><span class="material-symbols-outlined text-[20px]">format_h1</span></button>
+<button class="p-1.5 hover:bg-surface-container-low rounded"><span class="material-symbols-outlined text-[20px]">format_list_bulleted</span></button>
+<div class="flex-1"></div>
+<span class="px-2 py-1 bg-surface-container-low text-tertiary font-label-md text-[10px] rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px] text-green-600">check_circle</span> Auto-saved
+                            </span>
+</div>
+<!-- Content -->
+<div class="font-body-lg text-body-lg text-on-surface space-y-6 max-w-3xl">
+<h2 class="font-headline-md text-headline-md font-bold">The Intersection of Efficiency and Creativity</h2>
+<p class="leading-relaxed">As we move further into 2024, the narrative surrounding AI in design has shifted dramatically. It is no longer viewed merely as a tool for automation, but rather as a collaborative partner in the creative process.</p>
+<p class="leading-relaxed">This shift is particularly evident in how modern corporate interfaces are being structured. The emphasis is on high-density information display paired with extreme clarity—creating a calm environment that allows users to focus on high-performance content operations without feeling overwhelmed.</p>
+<div class="pl-6 border-l-4 border-primary/30 my-8 italic text-on-surface-variant">
+                                "The aesthetic draws from high-utility, developer-centric tools while maintaining the approachability of an editorial platform." — Strategy Agent Insight
+                            </div>
+<h3 class="font-headline-sm text-headline-sm font-semibold mt-8">Key Structural Shifts</h3>
+<ul class="list-disc pl-5 space-y-2">
+<li>Transition to 12-column fluid grids with fixed sidebars.</li>
+<li>Reduction of heavy drop shadows in favor of tonal layer separation.</li>
+<li>Adoption of precise, monospaced typography for utility labels paired with robust grotesk fonts for headlines.</li>
+</ul>
+</div>
+</div>
+<!-- Side Panel (Col 4) -->
+<div class="md:col-span-4 flex flex-col gap-lg">
+<!-- AI Insights Card -->
+<div class="bg-surface-container-low rounded-xl border border-outline-variant/30 p-lg">
+<div class="flex items-center justify-between mb-4 pb-3 border-b border-outline-variant/30">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Agent Insights</h3>
+<span class="material-symbols-outlined text-tertiary">psychology</span>
+</div>
+<div class="space-y-4">
+<div class="p-3 bg-surface-container-lowest border border-outline-variant/20 rounded-lg shadow-sm">
+<div class="flex items-center gap-2 mb-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-md text-[11px] text-secondary uppercase tracking-wider">SEO Suggestion</span>
+</div>
+<p class="font-body-md text-[13px] text-on-surface-variant">Consider adding keywords related to "minimalist UI" in the second paragraph to improve search visibility.</p>
+<div class="mt-2 flex justify-end">
+<button class="text-[12px] font-label-md text-primary hover:underline">Apply Change</button>
+</div>
+</div>
+<div class="p-3 bg-surface-container-lowest border border-outline-variant/20 rounded-lg shadow-sm">
+<div class="flex items-center gap-2 mb-2">
+<span class="w-2 h-2 rounded-full bg-primary-fixed-dim"></span>
+<span class="font-label-md text-[11px] text-tertiary uppercase tracking-wider">Tone Analysis</span>
+</div>
+<p class="font-body-md text-[13px] text-on-surface-variant">Current tone is 'Professional &amp; Authoritative'. Matches target audience parameters perfectly.</p>
+</div>
+</div>
+</div>
+<!-- Media Assets Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/50 p-lg shadow-[0_2px_4px_rgba(23,43,77,0.05)] flex-1">
+<div class="flex items-center justify-between mb-4 pb-3 border-b border-outline-variant/30">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Suggested Assets</h3>
+<span class="material-symbols-outlined text-tertiary">perm_media</span>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="relative group rounded-lg overflow-hidden border border-outline-variant/20 cursor-pointer">
+<img alt="Asset 1" class="w-full h-24 object-cover" data-alt="Abstract 3D rendering of soft geometric shapes in cool blue and white tones, studio lighting, minimal, representing AI structural design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeedPC53a11SDU6iD58kVbPvk2zVapAJ4YmlldiH-Z6_2UUzyKgFJfNq4IDgX9N1dlVOUnlpfN8-JLDcns3jwFbN26y0DME8HCCCewgd1vmgvENNkHwr1MtLPeJY4w-dH9adxKKUfqTY7KjAn8cAPBL8hJhTZX5a_Fzulvb4QxKPOCPc8Zb8U7ZhJIr8AQJeJH2mqN7rCqCFF8g0stoWWh6Ismkdmha6dpU_6w2Mk7xHP2hjgLh0-5">
+<div class="absolute inset-0 bg-on-surface/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white">add</span>
+</div>
+</div>
+<div class="relative group rounded-lg overflow-hidden border border-outline-variant/20 cursor-pointer">
+<img alt="Asset 2" class="w-full h-24 object-cover" data-alt="Clean corporate dashboard interface mockup shown in perspective, bright light theme, high density data visualization, soft blue accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOrxgqAI3iaUlU_bF9JzRN2XYFMvqoIYGwTCiut3zG8XtfVttWFGh3FFoSKEDQ6b3Gg1RB0nj372_pDw9b_aouf8OIVns67ICO-wEPEqpSZpjXfWx4gN8-RYeP9-OFFfJUh4-4Dp1xOn8GDCgx2JilmMr5qps6aZAZicrWEeKp8bMInB6braJhT-8hJ6MHyQ0cQXSfgnQMpr2B3g1s5H51CejYkgaJauhAOcPPcyxbSeod47crHDt1">
+<div class="absolute inset-0 bg-on-surface/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white">add</span>
+</div>
+</div>
+</div>
+<button class="w-full mt-4 py-2 border border-outline-variant border-dashed rounded-lg text-tertiary font-label-md text-label-md hover:bg-surface-container-low transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">add_photo_alternate</span>
+                                Generate More
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script>
+        // Simulation of the generation process
+        document.addEventListener('DOMContentLoaded', () => {
+            const typingTexts = [
+                "Structuring introductory paragraph...",
+                "Synthesizing research insights...",
+                "Applying editorial tone guidelines...",
+                "Finalizing layout structure...",
+                "Generation complete."
+            ];
+            
+            const typingElement = document.getElementById('typing-text');
+            const overlay = document.getElementById('generation-overlay');
+            const workspace = document.getElementById('main-workspace');
+            
+            let textIndex = 0;
+            
+            const textInterval = setInterval(() => {
+                textIndex++;
+                if (textIndex < typingTexts.length) {
+                    typingElement.textContent = typingTexts[textIndex];
+                }
+                
+                if (textIndex === typingTexts.length - 1) {
+                    clearInterval(textInterval);
+                    // Trigger transition to workspace
+                    setTimeout(() => {
+                        overlay.style.opacity = '0';
+                        setTimeout(() => {
+                            overlay.style.display = 'none';
+                            workspace.classList.add('active');
+                        }, 1000);
+                    }, 800);
+                }
+            }, 1200);
+        });
+    </script>
+</body></html>

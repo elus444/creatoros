@@ -1,0 +1,394 @@
+<!DOCTYPE html><html class="light" lang="en" style="width: 1280px; height: 1085px; overflow: hidden; position: relative;"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Automation Center - ContentOS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .workflow-node {
+            position: relative;
+        }
+        
+        .workflow-node::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            width: 2rem;
+            height: 2px;
+            background: #d8e2ff;
+            transform: translateY(-50%);
+            z-index: -1;
+        }
+        
+        .workflow-node:last-child::after {
+            display: none;
+        }
+        
+        .pulse-ring {
+            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0; }
+            100% { transform: scale(0.95); opacity: 0; }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f9f9ff",
+                        "tertiary": "#535d66",
+                        "surface-dim": "#cadaff",
+                        "error-container": "#ffdad6",
+                        "outline": "#727785",
+                        "primary-fixed": "#d8e2ff",
+                        "surface-tint": "#005ac2",
+                        "on-surface-variant": "#424754",
+                        "on-primary-fixed-variant": "#004395",
+                        "inverse-primary": "#adc6ff",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#f9f9ff",
+                        "secondary-fixed": "#dbe1ff",
+                        "on-error": "#ffffff",
+                        "on-secondary-container": "#fefcff",
+                        "inverse-surface": "#1d3052",
+                        "primary-container": "#2170e4",
+                        "surface-container-high": "#e0e8ff",
+                        "primary": "#0058be",
+                        "outline-variant": "#c2c6d6",
+                        "surface-container-low": "#f1f3ff",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed-variant": "#003ea8",
+                        "on-secondary-fixed": "#00174b",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#dae4ee",
+                        "on-primary-fixed": "#001a42",
+                        "primary-fixed-dim": "#adc6ff",
+                        "on-primary-container": "#fefcff",
+                        "on-background": "#041b3c",
+                        "on-tertiary-fixed-variant": "#3e4851",
+                        "tertiary-fixed-dim": "#bec8d2",
+                        "secondary": "#0051d5",
+                        "on-error-container": "#93000a",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#6c767f",
+                        "surface-container": "#e8edff",
+                        "secondary-container": "#316bf3",
+                        "on-tertiary-fixed": "#131d24",
+                        "on-tertiary-container": "#fcfcff",
+                        "surface-variant": "#d7e2ff",
+                        "surface-bright": "#f9f9ff",
+                        "on-surface": "#041b3c",
+                        "inverse-on-surface": "#edf0ff",
+                        "surface-container-highest": "#d7e2ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "20px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "container-max": "1440px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "xl": "40px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Hanken Grotesk"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["JetBrains Mono"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen">
+<!-- TopNavBar -->
+<nav class="bg-surface dark:bg-background text-primary dark:text-primary-fixed font-body-md text-body-md flex justify-between items-center h-16 px-gutter w-full sticky top-0 z-50 border-b border-outline-variant dark:border-outline flat no shadows hidden md:flex">
+<div class="flex items-center gap-6">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">ContentOS</div>
+<div class="flex gap-4">
+<!-- Navigation Items would go here, simplified for focused view -->
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-full text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" placeholder="Search..." type="text">
+</div>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors rounded-full cursor-pointer active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors rounded-full cursor-pointer active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="contrast">contrast</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-surface-variant overflow-hidden">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a person looking confidently at the camera, neutral background, soft studio lighting, high resolution, photorealistic corporate style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEhj68J5TWuqYv3Hm3cfFNDrF3voqNEEBb1msLIUXApn5ZIgVPt-bQ9Pa1yVL5r-42ThuHzjTyGdTNxsIdQGF7LY7V0adKGPIdl4wQffXxn7iR6pibN0w4wV2oyovL1rrhjyLbOuEY6urN2w9hbqo6qlS-3vnXpdVnnei1f6ymhcMRWsMq_gqMAP2ER59MFLR94UngMKE9QjHGaf6mb6Rx7wFxqHbs7atYbn_NU3UrewgLLDKRGjde">
+</div>
+</div>
+</nav>
+<div class="flex flex-col md:flex-row min-h-[calc(100vh-64px)]">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-60 flex flex-col py-lg border-r z-40 bg-surface-container-low dark:bg-surface-container-lowest text-primary dark:text-primary-fixed font-label-md text-label-md border-r border-outline-variant dark:border-outline flat no shadows hidden md:flex mt-16">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="h-10 w-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined" data-icon="folder_copy">folder_copy</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary">Project Alpha</h2>
+<p class="text-xs text-on-surface-variant">Premium Tier</p>
+</div>
+</div>
+<div class="flex-1 px-4 space-y-1">
+<a class="group flex items-center gap-3 px-4 py-3 cursor-pointer duration-200 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span> Dashboard
+                </a>
+<a class="group flex items-center gap-3 px-4 py-3 cursor-pointer duration-200 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span> Create
+                </a>
+<a class="group flex items-center gap-3 px-4 py-3 cursor-pointer duration-200 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="trending_up">trending_up</span> Trends
+                </a>
+<a class="group flex items-center gap-3 px-4 py-3 cursor-pointer duration-200 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="article">article</span> Content
+                </a>
+<a class="group flex items-center gap-3 px-4 py-3 cursor-pointer duration-200 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="bar_chart">bar_chart</span> Analytics
+                </a>
+<a class="group flex items-center gap-3 px-4 py-3 cursor-pointer duration-200 bg-primary-container text-on-primary-container dark:bg-primary dark:text-on-primary rounded-xl font-bold" href="#">
+<span class="material-symbols-outlined" data-icon="robot_2">robot_2</span> Automation
+                </a>
+<a class="group flex items-center gap-3 px-4 py-3 cursor-pointer duration-200 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="folder_copy">folder_copy</span> Projects
+                </a>
+<a class="group flex items-center gap-3 px-4 py-3 cursor-pointer duration-200 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span> Settings
+                </a>
+</div>
+<div class="px-4 mt-auto space-y-1">
+<a class="group flex items-center gap-3 px-4 py-3 cursor-pointer duration-200 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span> Help
+                </a>
+<a class="group flex items-center gap-3 px-4 py-3 cursor-pointer duration-200 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span> Logout
+                </a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 md:ml-60 p-md md:p-lg lg:p-xl max-w-container-max mx-auto w-full">
+<!-- Header -->
+<div class="flex justify-between items-end mb-8 border-b border-outline-variant pb-4">
+<div>
+<h1 class="font-headline-lg text-headline-lg font-bold text-on-surface">Automation Center</h1>
+<p class="text-on-surface-variant mt-2 font-body-lg text-body-lg">Manage and monitor your autonomous content workflows.</p>
+</div>
+<div class="flex gap-4">
+<button class="bg-surface border border-outline-variant text-on-surface hover:bg-surface-container-low px-4 py-2 rounded-lg font-label-md text-label-md flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined" data-icon="pause">pause</span> Pause All
+                    </button>
+<button class="bg-primary text-on-primary hover:bg-secondary px-6 py-2 rounded-lg font-label-md text-label-md flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined" data-icon="add">add</span> New Workflow
+                    </button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Active Workflow Overview -->
+<div class="lg:col-span-2 bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-[0_2px_4px_rgba(23,43,77,0.05)]">
+<div class="flex justify-between items-center mb-6">
+<div>
+<div class="flex items-center gap-3 mb-1">
+<h2 class="font-headline-md text-headline-md">Daily Content Engine</h2>
+<span class="bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full font-label-md text-label-md flex items-center gap-1">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+                                    Active
+                                </span>
+</div>
+<p class="text-tertiary font-body-sm text-sm">Autonomous trend discovery to content generation pipeline.</p>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<!-- Workflow Visualizer -->
+<div class="bg-surface-container-low rounded-lg p-8 mb-8 border border-outline-variant relative overflow-hidden">
+<div class="flex justify-between items-center relative z-10">
+<!-- Node 1 -->
+<div class="workflow-node flex flex-col items-center flex-1">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest border border-outline-variant flex items-center justify-center mb-3 text-tertiary">
+<span class="material-symbols-outlined" data-icon="travel_explore">travel_explore</span>
+</div>
+<span class="font-label-md text-label-md text-center">Trend Collection</span>
+<span class="text-xs text-outline mt-1">Done (06:00)</span>
+</div>
+<!-- Node 2 -->
+<div class="workflow-node flex flex-col items-center flex-1">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest border border-outline-variant flex items-center justify-center mb-3 text-tertiary">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+</div>
+<span class="font-label-md text-label-md text-center">AI Research</span>
+<span class="text-xs text-outline mt-1">Done (06:15)</span>
+</div>
+<!-- Node 3 (Active) -->
+<div class="workflow-node flex flex-col items-center flex-1">
+<div class="relative w-12 h-12 mb-3">
+<div class="absolute inset-0 rounded-full border-2 border-primary pulse-ring"></div>
+<div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container relative z-10 shadow-[0_0_15px_rgba(33,112,228,0.4)]">
+<span class="material-symbols-outlined" data-icon="strategy">strategy</span>
+</div>
+</div>
+<span class="font-label-md text-label-md text-center text-primary font-bold">Strategy</span>
+<span class="text-xs text-primary mt-1">Processing...</span>
+</div>
+<!-- Node 4 -->
+<div class="workflow-node flex flex-col items-center flex-1 opacity-50">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest border border-outline-variant flex items-center justify-center mb-3 text-tertiary">
+<span class="material-symbols-outlined" data-icon="edit_document">edit_document</span>
+</div>
+<span class="font-label-md text-label-md text-center">Generation</span>
+<span class="text-xs text-outline mt-1">Pending</span>
+</div>
+<!-- Node 5 -->
+<div class="flex flex-col items-center flex-1 opacity-50">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest border border-outline-variant flex items-center justify-center mb-3 text-tertiary">
+<span class="material-symbols-outlined" data-icon="notifications_active">notifications_active</span>
+</div>
+<span class="font-label-md text-label-md text-center">Notify</span>
+<span class="text-xs text-outline mt-1">Pending</span>
+</div>
+</div>
+</div>
+<!-- Workflow Stats -->
+<div class="grid grid-cols-4 gap-4">
+<div class="bg-surface rounded-lg p-4 border border-outline-variant">
+<span class="text-tertiary font-label-md text-label-md block mb-1">Last Run</span>
+<span class="font-headline-sm text-headline-sm">Today, 06:00 AM</span>
+</div>
+<div class="bg-surface rounded-lg p-4 border border-outline-variant">
+<span class="text-tertiary font-label-md text-label-md block mb-1">Next Run</span>
+<span class="font-headline-sm text-headline-sm">Tomorrow, 06:00 AM</span>
+</div>
+<div class="bg-surface rounded-lg p-4 border border-outline-variant">
+<span class="text-tertiary font-label-md text-label-md block mb-1">Success Rate</span>
+<span class="font-headline-sm text-headline-sm text-primary">98.5%</span>
+</div>
+<div class="bg-surface rounded-lg p-4 border border-outline-variant">
+<span class="text-tertiary font-label-md text-label-md block mb-1">Items Gen.</span>
+<span class="font-headline-sm text-headline-sm">1,240</span>
+</div>
+</div>
+</div>
+<!-- Execution Details -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-[0_2px_4px_rgba(23,43,77,0.05)] flex flex-col">
+<h3 class="font-headline-sm text-headline-sm mb-4 pb-2 border-b border-outline-variant">Today's Execution Details</h3>
+<div class="space-y-0 flex-1 overflow-y-auto pr-2">
+<!-- Detail Item 1 -->
+<div class="py-4 border-b border-outline-variant flex gap-4">
+<div class="mt-1">
+<span class="material-symbols-outlined text-primary" data-icon="check_circle">check_circle</span>
+</div>
+<div>
+<h4 class="font-body-md font-semibold">12 opportunities found</h4>
+<p class="text-sm text-tertiary mt-1">Trend Collection identified key signals across Twitter and Reddit.</p>
+<span class="text-xs text-outline block mt-2">06:05 AM</span>
+</div>
+</div>
+<!-- Detail Item 2 -->
+<div class="py-4 border-b border-outline-variant flex gap-4">
+<div class="mt-1">
+<span class="material-symbols-outlined text-primary" data-icon="check_circle">check_circle</span>
+</div>
+<div>
+<h4 class="font-body-md font-semibold">AI Research Completed</h4>
+<p class="text-sm text-tertiary mt-1">Gathered 45 reference articles and competitor analyses.</p>
+<span class="text-xs text-outline block mt-2">06:15 AM</span>
+</div>
+</div>
+<!-- Detail Item 3 (In Progress) -->
+<div class="py-4 flex gap-4">
+<div class="mt-1">
+<span class="material-symbols-outlined text-secondary-container animate-spin" data-icon="sync">sync</span>
+</div>
+<div>
+<h4 class="font-body-md font-semibold text-primary">Formulating Strategy...</h4>
+<p class="text-sm text-tertiary mt-1">Agent currently drafting 3 unique angles based on research.</p>
+<span class="text-xs text-outline block mt-2">Started 06:16 AM</span>
+</div>
+</div>
+</div>
+<button class="w-full mt-4 py-2 text-center text-sm font-label-md text-primary hover:bg-surface-container-low rounded-lg transition-colors border border-transparent hover:border-outline-variant">
+                        View Full Logs
+                    </button>
+</div>
+<!-- Additional Metric Cards for Layout Balance -->
+<div class="lg:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-6 mt-2">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-[0_2px_4px_rgba(23,43,77,0.05)] flex items-center justify-between">
+<div>
+<span class="text-tertiary font-label-md text-label-md block mb-1">Total API Calls</span>
+<span class="font-headline-lg text-headline-lg">45,210</span>
+</div>
+<div class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="api">api</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-[0_2px_4px_rgba(23,43,77,0.05)] flex items-center justify-between">
+<div>
+<span class="text-tertiary font-label-md text-label-md block mb-1">Tokens Consumed</span>
+<span class="font-headline-lg text-headline-lg">1.2M</span>
+</div>
+<div class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="data_usage">data_usage</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-[0_2px_4px_rgba(23,43,77,0.05)] flex items-center justify-between">
+<div>
+<span class="text-tertiary font-label-md text-label-md block mb-1">Active Agents</span>
+<span class="font-headline-lg text-headline-lg">4</span>
+</div>
+<div class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="smart_toy">smart_toy</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<div id="snapdom-sandbox" data-snapdom-sandbox="true" aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; width: 0px; height: 0px; overflow: hidden;"></div></body></html>
