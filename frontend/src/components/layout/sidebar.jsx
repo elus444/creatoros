@@ -20,12 +20,12 @@ import { cn } from "@/lib/utils";
 
 const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/projects", label: "Projects", icon: FolderKanban },
+  { href: "/trends", label: "Trends", icon: TrendingUp },
   { href: "/create", label: "Create", icon: PenSquare, disabled: true },
-  { href: "/trends", label: "Trends", icon: TrendingUp, disabled: true },
   { href: "/content", label: "Content", icon: Sparkles, disabled: true },
   { href: "/analytics", label: "Analytics", icon: BarChart3, disabled: true },
   { href: "/automation", label: "Automation", icon: Workflow, disabled: true },
-  { href: "/projects", label: "Projects", icon: FolderKanban, disabled: true },
   { href: "/settings", label: "Settings", icon: Settings, disabled: true },
 ];
 

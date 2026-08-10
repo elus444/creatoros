@@ -12,7 +12,18 @@ the full Project Constitution and Master Development Plan.
 - **M1 — Foundation + Authentication: PASS.** Repo structure, Docker
   (Postgres + Redis), FastAPI backend, Next.js frontend, JWT auth
   (register/login/logout/me), protected app shell, initial design system.
-- M2–M7: not started yet.
+- **M2 — Trend Intelligence: PASS.** Project model/API (prerequisite for
+  scoping trends — not explicit in M2's own bullet list but required by the
+  `trends.project_id` FK and exit condition), Trend model/API, an isolated
+  collector abstraction with `GoogleTrendsCollector` (public daily-trends
+  RSS feed) and `YouTubeCollector` (Data API v3), an independent
+  deterministic scoring service, and Projects/Trends frontend pages with
+  collect + select flows. (A Reddit collector was originally built too but
+  removed at the user's request — see "Trend collectors" below if
+  re-adding a source later. Reddit must not be reintroduced per the
+  Project Constitution.)
+- M3–M7: not started yet.
+
 
 ## Stack
 
@@ -92,6 +103,24 @@ npm run dev
 
 Frontend runs at `http://localhost:3000`.
 
+### 5. Trend collectors (M2)
+
+`GoogleTrendsCollector` needs no credentials — it reads Google's public
+daily-trends RSS feed (`trends.google.com/trending/rss`). Google Trends has
+no official keyword-scoped API, so this collector fetches that day's
+general trending searches and keeps only the ones whose title/related news
+headlines contain every keyword from the project's niche; narrow niches
+will often legitimately return zero Google Trends results, which is
+expected, not a bug (see `backend/app/services/collectors/
+google_trends_collector.py`). `GOOGLE_TRENDS_GEO` (default `US`) controls
+the region.
+
+`YouTubeCollector` requires an API key — create one for the YouTube Data
+API v3 at https://console.cloud.google.com and set `YOUTUBE_API_KEY` in
+`.env`. Without it, that collector reports itself as unavailable via a
+warning instead of fabricating data (see
+`backend/app/services/collectors/`).
+
 > Do not run `npm run build` while `npm run dev` is active in the same
 > directory — both write to `.next/` and will corrupt each other's build
 > cache, producing spurious 500s. Stop the dev server first, or use a
@@ -124,6 +153,17 @@ than redefining the DB/Redis setup.
 - **Redis keys:** namespace with a prefix like `auth:blacklist:*` (see
   `app/core/redis.py`) to avoid collisions once M5 adds job/queue state.
 - **Sidebar nav:** `frontend/src/components/layout/sidebar.jsx` already
-  has placeholder (disabled) links for Trends/Content/Analytics/Automation/
-  Projects/Settings — flip `disabled` off and point at the real route as
-  each milestone ships it, instead of adding new nav items ad hoc.
+  has placeholder (disabled) links for Content/Analytics/Automation/
+  Settings — flip `disabled` off and point at the real route as each
+  milestone ships it, instead of adding new nav items ad hoc. (Projects and
+  Trends were enabled in M2.)
+- **Trend/external-source collectors:** keep every source in its own module
+  under `app/services/collectors/`, implementing the `TrendCollector` ABC in
+  `collectors/base.py`, and register it in `TrendService`'s default
+  collector list (`app/services/trend_service.py`). Never let a collector
+  compute a score itself — that lives only in `app/services/scoring.py`
+  (kept independent per the Constitution; add a source-specific branch to
+  `_engagement_signal` there too). If a source needs credentials that
+  aren't configured, raise `CollectorNotConfiguredError` rather than
+  returning fake data; the orchestrating service turns that into a visible
+  warning, not a silent gap.

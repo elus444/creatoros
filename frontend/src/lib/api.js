@@ -62,3 +62,26 @@ export const authApi = {
   logout: (token) => apiRequest("/auth/logout", { method: "POST", token }),
   me: (token) => apiRequest("/auth/me", { token }),
 };
+
+export const projectsApi = {
+  list: (token) => apiRequest("/projects", { token }),
+  create: (payload, token) =>
+    apiRequest("/projects", { method: "POST", body: payload, token }),
+  get: (projectId, token) => apiRequest(`/projects/${projectId}`, { token }),
+};
+
+export const trendsApi = {
+  list: (projectId, token) =>
+    apiRequest(`/projects/${projectId}/trends`, { token }),
+  collect: (projectId, token, query) =>
+    apiRequest(`/projects/${projectId}/trends/collect`, {
+      method: "POST",
+      body: query ? { query } : {},
+      token,
+    }),
+  select: (projectId, trendId, token) =>
+    apiRequest(`/projects/${projectId}/trends/${trendId}/select`, {
+      method: "POST",
+      token,
+    }),
+};

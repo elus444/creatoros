@@ -234,7 +234,7 @@ export function HomePage() {
               Built for creators publishing across
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 text-sm font-semibold text-on-surface/55">
-              {["YouTube", "Reddit", "X / Twitter", "TikTok", "LinkedIn"].map((name) => (
+              {["YouTube", "X / Twitter", "TikTok", "LinkedIn"].map((name) => (
                 <span key={name}>{name}</span>
               ))}
             </div>

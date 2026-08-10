@@ -23,8 +23,8 @@ export default function DashboardPage() {
             {getGreeting()}, {firstName}
           </h1>
           <p className="max-w-xl text-sm leading-6 text-on-surface-variant md:text-base">
-            Your creatoros workspace is ready. Trend intelligence, multi-agent generation, and
-            analytics land in later milestones.
+            Your creatoros workspace is ready. Create a project and collect real, ranked
+            trends — multi-agent generation lands in later milestones.
           </p>
         </div>
       </div>
@@ -37,13 +37,13 @@ export default function DashboardPage() {
             status: "Live",
           },
           {
-            title: "Application shell",
-            body: "Sidebar, header, and responsive navigation for the product loop.",
+            title: "Trend intelligence",
+            body: "Real Google Trends and YouTube trends collected, scored, and rankable per project.",
             status: "Live",
           },
           {
             title: "Next up",
-            body: "Milestone 2 adds project-scoped trend discovery and ranking.",
+            body: "Milestone 3 adds multi-agent research, strategy, and content generation.",
             status: "Queued",
           },
         ].map((card, index) => (
@@ -70,12 +70,12 @@ export default function DashboardPage() {
           Product loop
         </p>
         <h2 className="mt-2 font-display text-2xl font-semibold text-on-surface">
-          Foundation complete
+          Foundation + trend intelligence complete
         </h2>
         <p className="mt-3 max-w-2xl text-sm leading-6 text-on-surface-variant md:text-base">
-          You can register, sign in, access the protected application, and log out. Remaining
-          milestones will unlock trends, AI generation, review, automation, and analytics without
-          changing this shell.
+          You can register, sign in, create projects, and collect real ranked trends for each
+          one. Remaining milestones will unlock AI generation, review, automation, and analytics
+          without changing this shell.
         </p>
       </section>
     </div>
