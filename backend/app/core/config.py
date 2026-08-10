@@ -35,6 +35,12 @@ class Settings(BaseSettings):
     google_trends_geo: str = "US"
     youtube_api_key: str | None = None
 
+    # LLM (M3). All agents call Gemini's generateContent REST API through
+    # llm_service — never directly. If unset, generation fails clearly via
+    # LLMNotConfiguredError rather than faking a response.
+    gemini_api_key: str | None = None
+    gemini_model: str = "gemini-flash-lite-latest"
+
     @property
     def cors_origin_list(self) -> list[str]:
         return [origin.strip() for origin in self.cors_origins.split(",") if origin.strip()]

@@ -15,6 +15,8 @@ async function parseError(response) {
     const data = await response.json();
     if (typeof data?.detail === "string") {
       detail = data.detail;
+    } else if (data?.detail && typeof data.detail === "object" && data.detail.message) {
+      detail = data.detail.message;
     } else if (Array.isArray(data?.detail)) {
       detail = data.detail.map((item) => item.msg || JSON.stringify(item)).join(", ");
     }
@@ -82,6 +84,38 @@ export const trendsApi = {
   select: (projectId, trendId, token) =>
     apiRequest(`/projects/${projectId}/trends/${trendId}/select`, {
       method: "POST",
+      token,
+    }),
+};
+
+export const contentApi = {
+  list: (token, projectId) =>
+    apiRequest(projectId ? `/content?project_id=${projectId}` : "/content", { token }),
+  generate: (trendId, token) =>
+    apiRequest("/content/generate", {
+      method: "POST",
+      body: { trend_id: trendId },
+      token,
+    }),
+  get: (contentId, token) => apiRequest(`/content/${contentId}`, { token }),
+  update: (contentId, payload, token) =>
+    apiRequest(`/content/${contentId}`, {
+      method: "PATCH",
+      body: payload,
+      token,
+    }),
+  review: (contentId, token) =>
+    apiRequest(`/content/${contentId}/review`, { method: "POST", token }),
+  approve: (contentId, token) =>
+    apiRequest(`/content/${contentId}/approve`, { method: "POST", token }),
+  export: (contentId, token) =>
+    apiRequest(`/content/${contentId}/export`, { method: "POST", token }),
+  regenerate: (contentId, token) =>
+    apiRequest(`/content/${contentId}/regenerate`, { method: "POST", token }),
+  suggest: (contentId, payload, token) =>
+    apiRequest(`/content/${contentId}/suggest`, {
+      method: "POST",
+      body: payload,
       token,
     }),
 };

@@ -14,13 +14,14 @@ import {
   Play,
   RefreshCw,
   Search,
+  Sparkles,
   TrendingUp,
   TriangleAlert,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/context/auth-context";
-import { ApiError, projectsApi, trendsApi } from "@/lib/api";
+import { ApiError, contentApi, projectsApi, trendsApi } from "@/lib/api";
 import { cn } from "@/lib/utils";
 
 const SOURCE_META = {
@@ -69,6 +70,7 @@ function TrendsContent() {
   const [collectMessage, setCollectMessage] = useState(null);
   const [expandedId, setExpandedId] = useState(null);
   const [selectingId, setSelectingId] = useState(null);
+  const [generatingId, setGeneratingId] = useState(null);
 
   useEffect(() => {
     if (!token) return;
@@ -164,6 +166,20 @@ function TrendsContent() {
     }
   }
 
+  async function handleGenerate(trendId) {
+    setGeneratingId(trendId);
+    setTrendsError("");
+    try {
+      const content = await contentApi.generate(trendId, token);
+      router.push(`/content/${content.id}`);
+    } catch (err) {
+      setTrendsError(
+        err instanceof ApiError ? err.message : "Unable to generate content.",
+      );
+    } finally {
+      setGeneratingId(null);
+    }
+  }
 
   const activeProject = useMemo(
     () => projects.find((project) => project.id === activeProjectId),
@@ -367,7 +383,7 @@ function TrendsContent() {
                               size="sm"
                               variant={trend.is_selected ? "secondary" : "outline"}
                               onClick={() => handleSelect(trend.id)}
-                              disabled={selectingId === trend.id}
+                              disabled={selectingId === trend.id || generatingId === trend.id}
                             >
                               {selectingId === trend.id ? (
                                 <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -378,6 +394,20 @@ function TrendsContent() {
                               )}
                               {trend.is_selected ? "Selected" : "Select"}
                             </Button>
+                            {trend.is_selected ? (
+                              <Button
+                                size="sm"
+                                onClick={() => handleGenerate(trend.id)}
+                                disabled={generatingId === trend.id}
+                              >
+                                {generatingId === trend.id ? (
+                                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                                ) : (
+                                  <Sparkles className="h-3.5 w-3.5" />
+                                )}
+                                {generatingId === trend.id ? "Generating…" : "Generate"}
+                              </Button>
+                            ) : null}
                           </div>
                         </div>
                       </motion.div>

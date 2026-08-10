@@ -36,3 +36,7 @@ class Project(Base):
         back_populates="project",
         cascade="all, delete-orphan",
     )
+    content_items: Mapped[list["Content"]] = relationship(  # noqa: F821
+        back_populates="project",
+        cascade="all, delete-orphan",
+    )

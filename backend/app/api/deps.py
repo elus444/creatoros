@@ -9,6 +9,7 @@ from app.core.database import get_db
 from app.models.project import Project
 from app.models.user import User
 from app.services.auth_service import AuthService
+from app.services.content_service import ContentService
 from app.services.project_service import ProjectService
 from app.services.trend_service import TrendService
 
@@ -40,6 +41,10 @@ def get_trend_service(db: Annotated[Session, Depends(get_db)]) -> TrendService:
     return TrendService(db)
 
 
+def get_content_service(db: Annotated[Session, Depends(get_db)]) -> ContentService:
+    return ContentService(db)
+
+
 def get_owned_project(
     project_id: UUID,
     current_user: Annotated[User, Depends(get_current_user)],
@@ -53,6 +58,7 @@ DBSession = Annotated[Session, Depends(get_db)]
 AuthServiceDep = Annotated[AuthService, Depends(get_auth_service)]
 ProjectServiceDep = Annotated[ProjectService, Depends(get_project_service)]
 TrendServiceDep = Annotated[TrendService, Depends(get_trend_service)]
+ContentServiceDep = Annotated[ContentService, Depends(get_content_service)]
 OwnedProject = Annotated[Project, Depends(get_owned_project)]
 BearerCredentials = Annotated[
     HTTPAuthorizationCredentials | None,

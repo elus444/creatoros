@@ -37,3 +37,7 @@ class Trend(Base):
     )
 
     project: Mapped["Project"] = relationship(back_populates="trends")  # noqa: F821
+    content_items: Mapped[list["Content"]] = relationship(  # noqa: F821
+        back_populates="trend",
+        cascade="all, delete-orphan",
+    )

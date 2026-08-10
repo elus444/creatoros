@@ -23,8 +23,8 @@ export default function DashboardPage() {
             {getGreeting()}, {firstName}
           </h1>
           <p className="max-w-xl text-sm leading-6 text-on-surface-variant md:text-base">
-            Your creatoros workspace is ready. Create a project and collect real, ranked
-            trends — multi-agent generation lands in later milestones.
+            Your creatoros workspace is ready. Create a project, collect ranked trends,
+            then generate a research → strategy → content package from a selected trend.
           </p>
         </div>
       </div>
@@ -42,9 +42,9 @@ export default function DashboardPage() {
             status: "Live",
           },
           {
-            title: "Next up",
-            body: "Milestone 3 adds multi-agent research, strategy, and content generation.",
-            status: "Queued",
+            title: "Multi-agent content",
+            body: "Research, strategy, and short-form content generated from a selected trend via Gemini.",
+            status: "Live",
           },
         ].map((card, index) => (
           <motion.article
@@ -70,12 +70,12 @@ export default function DashboardPage() {
           Product loop
         </p>
         <h2 className="mt-2 font-display text-2xl font-semibold text-on-surface">
-          Foundation + trend intelligence complete
+          Foundation through content generation complete
         </h2>
         <p className="mt-3 max-w-2xl text-sm leading-6 text-on-surface-variant md:text-base">
-          You can register, sign in, create projects, and collect real ranked trends for each
-          one. Remaining milestones will unlock AI generation, review, automation, and analytics
-          without changing this shell.
+          You can register, sign in, create projects, collect ranked trends, and generate a
+          full content package. Remaining milestones unlock review/export, automation, and
+          analytics without changing this shell.
         </p>
       </section>
     </div>
