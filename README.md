@@ -22,11 +22,14 @@ the full Project Constitution and Master Development Plan.
   removed at the user's request — see "Trend collectors" below if
   re-adding a source later. Reddit must not be reintroduced per the
   Project Constitution.)
-- **M3 — Multi-Agent AI Content Engine: PASS.** llm_service (Gemini
+- **M3 — Multi-Agent AI Content Engine: PASS.** `llm_service` (Gemini
   structured JSON), Research/Strategy/Content agents, orchestrator with
-  gent_runs logging, content persistence, generate API, Trends → Generate.
-- M4–M7: not started yet.
-
+  `agent_runs` logging, content persistence, generate API, Trends → Generate.
+- **M4 — Content Workspace: PASS.** Content library, three-panel workspace
+  (Research | Script Editor | AI Suggestions), edit titles/script/caption/
+  hashtags, regenerate, suggest, and status flow GENERATED → REVIEW →
+  APPROVED → EXPORTED with markdown export download.
+- M5–M7: not started yet.
 
 ## Stack
 

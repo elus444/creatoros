@@ -23,8 +23,8 @@ export default function DashboardPage() {
             {getGreeting()}, {firstName}
           </h1>
           <p className="max-w-xl text-sm leading-6 text-on-surface-variant md:text-base">
-            Your creatoros workspace is ready. Create a project, collect ranked trends,
-            then generate a research → strategy → content package from a selected trend.
+            Your creatoros workspace is ready. Collect trends, generate a package, then
+            edit → review → approve → export in the content workspace.
           </p>
         </div>
       </div>
@@ -42,8 +42,8 @@ export default function DashboardPage() {
             status: "Live",
           },
           {
-            title: "Multi-agent content",
-            body: "Research, strategy, and short-form content generated from a selected trend via Gemini.",
+            title: "Content workspace",
+            body: "Three-panel editor with research, script editing, AI suggestions, review, approve, and export.",
             status: "Live",
           },
         ].map((card, index) => (
@@ -70,12 +70,12 @@ export default function DashboardPage() {
           Product loop
         </p>
         <h2 className="mt-2 font-display text-2xl font-semibold text-on-surface">
-          Foundation through content generation complete
+          Foundation through content workspace complete
         </h2>
         <p className="mt-3 max-w-2xl text-sm leading-6 text-on-surface-variant md:text-base">
-          You can register, sign in, create projects, collect ranked trends, and generate a
-          full content package. Remaining milestones unlock review/export, automation, and
-          analytics without changing this shell.
+          You can register, create projects, collect trends, generate packages, and run the
+          full edit → review → approve → export loop. Remaining milestones unlock automation
+          and analytics without changing this shell.
         </p>
       </section>
     </div>
