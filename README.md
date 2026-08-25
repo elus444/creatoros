@@ -9,10 +9,10 @@ the full Project Constitution and Master Development Plan.
 
 ## Status
 
-- **M1 — Foundation + Authentication: PASS.** Repo structure, Docker
+- **M1 - Foundation + Authentication: PASS.** Repo structure, Docker
   (Postgres + Redis), FastAPI backend, Next.js frontend, JWT auth
   (register/login/logout/me), protected app shell, initial design system.
-- **M2 — Trend Intelligence: PASS.** Project model/API (prerequisite for
+- **M2 - Trend Intelligence: PASS.** Project model/API (prerequisite for
   scoping trends — not explicit in M2's own bullet list but required by the
   `trends.project_id` FK and exit condition), Trend model/API, an isolated
   collector abstraction with `GoogleTrendsCollector` (public daily-trends
@@ -22,10 +22,10 @@ the full Project Constitution and Master Development Plan.
   removed at the user's request — see "Trend collectors" below if
   re-adding a source later. Reddit must not be reintroduced per the
   Project Constitution.)
-- **M3 — Multi-Agent AI Content Engine: PASS.** `llm_service` (Gemini
+- **M3 - Multi-Agent AI Content Engine: PASS.** `llm_service` (Gemini
   structured JSON), Research/Strategy/Content agents, orchestrator with
   `agent_runs` logging, content persistence, generate API, Trends → Generate.
-- **M4 — Content Workspace: PASS.** Content library, three-panel workspace
+- **M4 - Content Workspace: PASS.** Content library, three-panel workspace
   (Research | Script Editor | AI Suggestions), edit titles/script/caption/
   hashtags, regenerate, suggest, and status flow GENERATED → REVIEW →
   APPROVED → EXPORTED with markdown export download.
