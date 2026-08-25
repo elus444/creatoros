@@ -1,0 +1,273 @@
+<!DOCTYPE html><html class="light" lang="en" style="width: 1280px; height: 1024px; overflow: hidden; position: relative;"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>ContentOS - Onboarding Step 4</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-fixed": "#dbe1ff",
+                      "on-primary": "#ffffff",
+                      "on-tertiary-fixed": "#131d24",
+                      "on-surface": "#041b3c",
+                      "tertiary-container": "#6c767f",
+                      "inverse-on-surface": "#edf0ff",
+                      "surface-dim": "#cadaff",
+                      "surface-variant": "#d7e2ff",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-fixed": "#00174b",
+                      "error-container": "#ffdad6",
+                      "on-background": "#041b3c",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-tint": "#005ac2",
+                      "secondary": "#0051d5",
+                      "outline-variant": "#c2c6d6",
+                      "on-secondary-fixed-variant": "#003ea8",
+                      "on-primary-fixed": "#001a42",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary-container": "#fefcff",
+                      "inverse-surface": "#1d3052",
+                      "on-primary-fixed-variant": "#004395",
+                      "outline": "#727785",
+                      "surface-container-highest": "#d7e2ff",
+                      "primary-fixed-dim": "#adc6ff",
+                      "tertiary-fixed-dim": "#bec8d2",
+                      "on-error": "#ffffff",
+                      "primary-fixed": "#d8e2ff",
+                      "on-tertiary-fixed-variant": "#3e4851",
+                      "primary": "#0058be",
+                      "secondary-container": "#316bf3",
+                      "on-tertiary-container": "#fcfcff",
+                      "error": "#ba1a1a",
+                      "on-error-container": "#93000a",
+                      "primary-container": "#2170e4",
+                      "tertiary-fixed": "#dae4ee",
+                      "surface": "#f9f9ff",
+                      "background": "#f9f9ff",
+                      "surface-container-high": "#e0e8ff",
+                      "surface-bright": "#f9f9ff",
+                      "surface-container-low": "#f1f3ff",
+                      "tertiary": "#535d66",
+                      "on-surface-variant": "#424754",
+                      "on-primary-container": "#fefcff",
+                      "inverse-primary": "#adc6ff",
+                      "secondary-fixed-dim": "#b4c5ff",
+                      "surface-container": "#e8edff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "xl": "40px",
+                      "container-max": "1440px",
+                      "gutter": "20px",
+                      "md": "16px",
+                      "lg": "24px",
+                      "xs": "4px",
+                      "base": "4px",
+                      "sm": "8px"
+              },
+              "fontFamily": {
+                      "headline-sm": [
+                              "Hanken Grotesk"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Hanken Grotesk"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "JetBrains Mono"
+                      ],
+                      "display-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-lg-mobile": [
+                              "Hanken Grotesk"
+                      ]
+              },
+              "fontSize": {
+                      "headline-sm": [
+                              "18px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "22px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "26px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+</head>
+<body class="bg-surface-container-low min-h-screen flex items-center justify-center p-md font-body-md text-on-surface">
+<main class="w-full max-w-2xl bg-surface-container-lowest rounded-xl border border-outline-variant shadow-[0_10px_25px_rgba(23,43,77,0.10)] overflow-hidden">
+<!-- Progress Header -->
+<div class="px-lg py-md border-b border-outline-variant bg-surface flex justify-between items-center">
+<span class="font-label-md text-label-md text-primary">STEP 4 OF 5</span>
+<div class="flex gap-xs">
+<div class="h-1 w-8 rounded-full bg-primary"></div>
+<div class="h-1 w-8 rounded-full bg-primary"></div>
+<div class="h-1 w-8 rounded-full bg-primary"></div>
+<div class="h-1 w-8 rounded-full bg-primary"></div>
+<div class="h-1 w-8 rounded-full bg-surface-container-highest"></div>
+</div>
+</div>
+<div class="p-xl">
+<!-- Title Section -->
+<div class="mb-lg">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-sm">Set your content preferences</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Tell us what you want to create and where you'll be posting.</p>
+</div>
+<form class="space-y-lg">
+<!-- Content Format Grid -->
+<div class="space-y-sm">
+<label class="font-headline-sm text-headline-sm block text-on-surface">Content Format</label>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-md">
+<label class="cursor-pointer group">
+<input class="peer sr-only" name="format" type="checkbox" value="video">
+<div class="border border-outline-variant rounded-lg p-md flex flex-col items-center justify-center gap-sm transition-all duration-200 hover:bg-surface-container-low peer-checked:border-primary peer-checked:bg-primary-fixed peer-checked:shadow-[0_0_0_2px_rgba(33,112,228,0.1)] h-24">
+<span class="material-symbols-outlined text-outline group-hover:text-primary peer-checked:text-primary" style="font-variation-settings: 'FILL' 0;">movie</span>
+<span class="font-label-md text-label-md text-on-surface-variant peer-checked:text-on-surface text-center">Short-form Video</span>
+</div>
+</label>
+<label class="cursor-pointer group">
+<input class="peer sr-only" name="format" type="checkbox" value="thread">
+<div class="border border-outline-variant rounded-lg p-md flex flex-col items-center justify-center gap-sm transition-all duration-200 hover:bg-surface-container-low peer-checked:border-primary peer-checked:bg-primary-fixed peer-checked:shadow-[0_0_0_2px_rgba(33,112,228,0.1)] h-24">
+<span class="material-symbols-outlined text-outline group-hover:text-primary peer-checked:text-primary" style="font-variation-settings: 'FILL' 0;">forum</span>
+<span class="font-label-md text-label-md text-on-surface-variant peer-checked:text-on-surface text-center">Thread</span>
+</div>
+</label>
+<label class="cursor-pointer group">
+<input class="peer sr-only" name="format" type="checkbox" value="article">
+<div class="border border-outline-variant rounded-lg p-md flex flex-col items-center justify-center gap-sm transition-all duration-200 hover:bg-surface-container-low peer-checked:border-primary peer-checked:bg-primary-fixed peer-checked:shadow-[0_0_0_2px_rgba(33,112,228,0.1)] h-24">
+<span class="material-symbols-outlined text-outline group-hover:text-primary peer-checked:text-primary" style="font-variation-settings: 'FILL' 0;">article</span>
+<span class="font-label-md text-label-md text-on-surface-variant peer-checked:text-on-surface text-center">Article</span>
+</div>
+</label>
+<label class="cursor-pointer group">
+<input class="peer sr-only" name="format" type="checkbox" value="newsletter">
+<div class="border border-outline-variant rounded-lg p-md flex flex-col items-center justify-center gap-sm transition-all duration-200 hover:bg-surface-container-low peer-checked:border-primary peer-checked:bg-primary-fixed peer-checked:shadow-[0_0_0_2px_rgba(33,112,228,0.1)] h-24">
+<span class="material-symbols-outlined text-outline group-hover:text-primary peer-checked:text-primary" style="font-variation-settings: 'FILL' 0;">mail</span>
+<span class="font-label-md text-label-md text-on-surface-variant peer-checked:text-on-surface text-center">Newsletter</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Primary Platform -->
+<div class="space-y-sm">
+<label class="font-headline-sm text-headline-sm block text-on-surface" for="platform">Primary Platform</label>
+<select class="w-full border border-outline-variant rounded-lg px-md py-3 text-on-surface focus:ring-2 focus:ring-primary focus:border-primary focus:ring-opacity-10 bg-transparent font-body-md text-body-md outline-none appearance-none cursor-pointer" id="platform" name="platform">
+<option disabled="" selected="" value="">Select your main platform...</option>
+<option value="youtube">YouTube</option>
+<option value="linkedin">LinkedIn</option>
+<option value="twitter">X/Twitter</option>
+<option value="instagram">Instagram</option>
+</select>
+</div>
+<!-- Posting Frequency -->
+<div class="space-y-sm">
+<label class="font-headline-sm text-headline-sm block text-on-surface">Posting Frequency</label>
+<div class="flex flex-col sm:flex-row gap-md">
+<label class="flex-1 cursor-pointer group">
+<input class="peer sr-only" name="frequency" type="radio" value="daily">
+<div class="border border-outline-variant rounded-lg py-3 px-md text-center transition-all duration-200 hover:bg-surface-container-low peer-checked:border-primary peer-checked:bg-primary-fixed peer-checked:shadow-[0_0_0_2px_rgba(33,112,228,0.1)]">
+<span class="font-label-md text-label-md text-on-surface-variant peer-checked:text-on-surface">Daily</span>
+</div>
+</label>
+<label class="flex-1 cursor-pointer group">
+<input class="peer sr-only" name="frequency" type="radio" value="3x_weekly">
+<div class="border border-outline-variant rounded-lg py-3 px-md text-center transition-all duration-200 hover:bg-surface-container-low peer-checked:border-primary peer-checked:bg-primary-fixed peer-checked:shadow-[0_0_0_2px_rgba(33,112,228,0.1)]">
+<span class="font-label-md text-label-md text-on-surface-variant peer-checked:text-on-surface">3x Weekly</span>
+</div>
+</label>
+<label class="flex-1 cursor-pointer group">
+<input class="peer sr-only" name="frequency" type="radio" value="weekly">
+<div class="border border-outline-variant rounded-lg py-3 px-md text-center transition-all duration-200 hover:bg-surface-container-low peer-checked:border-primary peer-checked:bg-primary-fixed peer-checked:shadow-[0_0_0_2px_rgba(33,112,228,0.1)]">
+<span class="font-label-md text-label-md text-on-surface-variant peer-checked:text-on-surface">Weekly</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Actions -->
+<div class="pt-lg border-t border-outline-variant flex justify-between items-center mt-xl">
+<button class="font-label-md text-label-md text-tertiary hover:bg-surface-container-high hover:text-on-surface px-lg py-3 rounded-lg transition-colors duration-200" type="button">
+                        Back
+                    </button>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-lg py-3 rounded-lg hover:bg-primary-container transition-colors duration-200 flex items-center gap-sm shadow-[0_2px_4px_rgba(23,43,77,0.05)]" type="button">
+                        Finish Setup
+                        <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
+</button>
+</div>
+</form>
+</div>
+</main>
+<div id="snapdom-sandbox" data-snapdom-sandbox="true" aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; width: 0px; height: 0px; overflow: hidden;"></div></body></html>

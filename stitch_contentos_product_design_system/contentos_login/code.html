@@ -1,0 +1,247 @@
+<!DOCTYPE html><html lang="en" style="width: 1280px; height: 1024px; overflow: hidden; position: relative;"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>ContentOS Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-fixed-variant": "#004395",
+                      "tertiary-fixed-dim": "#bec8d2",
+                      "outline": "#727785",
+                      "primary-container": "#2170e4",
+                      "on-error-container": "#93000a",
+                      "surface": "#f9f9ff",
+                      "on-primary": "#ffffff",
+                      "on-tertiary-fixed-variant": "#3e4851",
+                      "on-surface": "#041b3c",
+                      "on-tertiary": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary-fixed": "#dae4ee",
+                      "primary": "#0058be",
+                      "primary-fixed": "#d8e2ff",
+                      "surface-variant": "#d7e2ff",
+                      "on-tertiary-container": "#fcfcff",
+                      "inverse-on-surface": "#edf0ff",
+                      "surface-dim": "#cadaff",
+                      "secondary-container": "#316bf3",
+                      "tertiary-container": "#6c767f",
+                      "secondary": "#0051d5",
+                      "surface-container-highest": "#d7e2ff",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed": "#001a42",
+                      "tertiary": "#535d66",
+                      "inverse-primary": "#adc6ff",
+                      "on-secondary": "#ffffff",
+                      "secondary-fixed": "#dbe1ff",
+                      "surface-container-high": "#e0e8ff",
+                      "inverse-surface": "#1d3052",
+                      "surface-bright": "#f9f9ff",
+                      "on-primary-container": "#fefcff",
+                      "error-container": "#ffdad6",
+                      "primary-fixed-dim": "#adc6ff",
+                      "on-surface-variant": "#424754",
+                      "on-error": "#ffffff",
+                      "on-background": "#041b3c",
+                      "on-secondary-fixed-variant": "#003ea8",
+                      "on-secondary-fixed": "#00174b",
+                      "surface-tint": "#005ac2",
+                      "secondary-fixed-dim": "#b4c5ff",
+                      "surface-container": "#e8edff",
+                      "on-tertiary-fixed": "#131d24",
+                      "on-secondary-container": "#fefcff",
+                      "outline-variant": "#c2c6d6",
+                      "surface-container-low": "#f1f3ff",
+                      "background": "#f9f9ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "xl": "40px",
+                      "xs": "4px",
+                      "gutter": "20px",
+                      "md": "16px",
+                      "container-max": "1440px",
+                      "sm": "8px",
+                      "base": "4px",
+                      "lg": "24px"
+              },
+              "fontFamily": {
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Hanken Grotesk"
+                      ],
+                      "label-md": [
+                              "JetBrains Mono"
+                      ],
+                      "headline-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-sm": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-md": [
+                              "Hanken Grotesk"
+                      ]
+              },
+              "fontSize": {
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "26px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "22px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-sm": [
+                              "18px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex items-center justify-center">
+<div class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 bg-surface rounded-xl overflow-hidden shadow-lg border border-outline-variant" style="box-shadow: 0 10px 25px rgba(23, 43, 77, 0.10);">
+<!-- Left Side: Visual/Brand Context -->
+<div class="hidden md:flex flex-col justify-between p-12 bg-surface-container-low relative">
+<div class="z-10 relative">
+<h1 class="font-headline-lg text-headline-lg text-primary font-bold">ContentOS</h1>
+<p class="mt-4 font-body-lg text-body-lg text-on-surface-variant max-w-sm">The intelligent platform for high-performance content operations. Streamline your workflow with AI-driven insights.</p>
+</div>
+<!-- Atmospheric Graphic Placeholder -->
+<div class="absolute inset-0 overflow-hidden pointer-events-none opacity-80 mix-blend-multiply">
+<div class="absolute w-96 h-96 bg-primary-fixed-dim rounded-full blur-3xl opacity-30 -top-10 -left-10"></div>
+<div class="absolute w-[30rem] h-[30rem] bg-surface-container-highest rounded-full blur-3xl opacity-40 bottom-10 -right-20"></div>
+</div>
+<div class="z-10 mt-auto">
+<div class="flex items-center gap-3 bg-surface p-4 rounded-lg border border-outline-variant inline-flex" style="box-shadow: 0 2px 4px rgba(23, 43, 77, 0.05);">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">robot_2</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">System Status</p>
+<p class="font-body-md text-body-md font-medium text-on-surface">All AI Agents Operational</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Side: Login Form -->
+<div class="flex flex-col justify-center px-8 py-12 md:px-16 md:py-24 bg-surface relative z-10">
+<div class="w-full max-w-md mx-auto">
+<div class="mb-8">
+<h2 class="font-display-lg text-display-lg text-on-surface">Welcome back</h2>
+<p class="mt-2 font-body-lg text-body-lg text-on-surface-variant">Sign in to continue to your workspace.</p>
+</div>
+<form class="space-y-6">
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2" for="email">Email address</label>
+<input class="w-full px-4 py-3 rounded-lg border border-outline-variant bg-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-shadow font-body-md text-body-md text-on-surface placeholder:text-outline" id="email" placeholder="name@company.com" type="email">
+</div>
+<div>
+<div class="flex justify-between items-center mb-2">
+<label class="block font-label-md text-label-md text-on-surface" for="password">Password</label>
+<a class="font-body-md text-body-md text-primary hover:text-primary-container transition-colors" href="#">Forgot password?</a>
+</div>
+<div class="relative">
+<input class="w-full px-4 py-3 rounded-lg border border-outline-variant bg-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-shadow font-body-md text-body-md text-on-surface placeholder:text-outline pr-10" id="password" placeholder="••••••••" type="password">
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-outline-variant hover:text-on-surface transition-colors focus:outline-none" type="button">
+<span class="material-symbols-outlined text-lg">visibility_off</span>
+</button>
+</div>
+</div>
+<button class="w-full py-3 px-4 bg-primary text-on-primary rounded-lg font-body-lg text-body-lg font-medium hover:bg-primary-container focus:ring-4 focus:ring-primary-fixed transition-all" type="button">
+                        Sign In
+                    </button>
+</form>
+<div class="mt-8 flex items-center gap-4">
+<div class="h-px bg-outline-variant flex-1"></div>
+<span class="font-label-md text-label-md text-outline">OR</span>
+<div class="h-px bg-outline-variant flex-1"></div>
+</div>
+<button class="mt-8 w-full py-3 px-4 bg-surface border border-outline-variant text-on-surface rounded-lg font-body-lg text-body-lg font-medium hover:bg-surface-container-low focus:ring-4 focus:ring-surface-variant transition-all flex items-center justify-center gap-3" type="button">
+<!-- Google G SVG Logo for visual polish -->
+<svg class="w-5 h-5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+                    Continue with Google
+                </button>
+<p class="mt-8 text-center font-body-md text-body-md text-on-surface-variant">
+                    Don't have an account? <a class="text-primary font-medium hover:underline" href="#">Create one</a>
+</p>
+</div>
+</div>
+</div>
+<div id="snapdom-sandbox" data-snapdom-sandbox="true" aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; width: 0px; height: 0px; overflow: hidden;"></div></body></html>

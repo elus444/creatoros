@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ContentOS - AI Content Operating System</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error-container": "#93000a",
+                      "primary-container": "#2170e4",
+                      "on-tertiary": "#ffffff",
+                      "on-surface": "#041b3c",
+                      "secondary": "#0051d5",
+                      "tertiary-fixed": "#dae4ee",
+                      "on-primary-container": "#fefcff",
+                      "secondary-fixed-dim": "#b4c5ff",
+                      "inverse-on-surface": "#edf0ff",
+                      "tertiary-fixed-dim": "#bec8d2",
+                      "surface-bright": "#f9f9ff",
+                      "on-primary-fixed-variant": "#004395",
+                      "on-tertiary-fixed-variant": "#3e4851",
+                      "error-container": "#ffdad6",
+                      "on-background": "#041b3c",
+                      "secondary-fixed": "#dbe1ff",
+                      "inverse-surface": "#1d3052",
+                      "surface-dim": "#cadaff",
+                      "surface-container": "#e8edff",
+                      "on-secondary-fixed-variant": "#003ea8",
+                      "on-primary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "outline": "#727785",
+                      "error": "#ba1a1a",
+                      "on-secondary-fixed": "#00174b",
+                      "background": "#f9f9ff",
+                      "primary-fixed-dim": "#adc6ff",
+                      "surface-container-high": "#e0e8ff",
+                      "tertiary-container": "#6c767f",
+                      "secondary-container": "#316bf3",
+                      "primary": "#3B82F6",
+                      "on-tertiary-fixed": "#131d24",
+                      "surface": "#f9f9ff",
+                      "on-secondary-container": "#fefcff",
+                      "on-secondary": "#ffffff",
+                      "surface-variant": "#d7e2ff",
+                      "outline-variant": "#c2c6d6",
+                      "surface-container-low": "#f1f3ff",
+                      "on-primary-fixed": "#001a42",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-highest": "#d7e2ff",
+                      "surface-tint": "#3B82F6",
+                      "on-surface-variant": "#424754",
+                      "tertiary": "#535d66",
+                      "inverse-primary": "#adc6ff",
+                      "primary-fixed": "#d8e2ff",
+                      "on-tertiary-container": "#fcfcff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem",
+                      "2xl": "1rem",
+                      "3xl": "1.5rem"
+              },
+              "spacing": {
+                      "md": "16px",
+                      "base": "4px",
+                      "xs": "4px",
+                      "gutter": "20px",
+                      "sm": "8px",
+                      "xl": "40px",
+                      "lg": "24px",
+                      "container-max": "1440px"
+              },
+              "fontFamily": {
+                      "headline-sm": ["Hanken Grotesk"],
+                      "label-md": ["JetBrains Mono"],
+                      "headline-lg": ["Hanken Grotesk"],
+                      "headline-md": ["Hanken Grotesk"],
+                      "body-lg": ["Inter"],
+                      "display-lg": ["Hanken Grotesk"],
+                      "body-md": ["Inter"],
+                      "headline-lg-mobile": ["Hanken Grotesk"]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #3B82F6 0%, #1e3a8a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-bg {
+            background: radial-gradient(circle at 50% 0%, #e0e7ff 0%, #f9f9ff 70%);
+        }
+        .glass-btn {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+        .glass-btn:hover {
+            background: rgba(255, 255, 255, 0.6);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(194, 198, 214, 0.4);
+        }
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 24px;
+            bottom: 0;
+            width: 2px;
+            background: #e2e8f0;
+            z-index: 0;
+        }
+        @media (min-width: 768px) {
+            .timeline-line::before {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+      </style>
+</head>
+<body class="bg-background text-on-background font-body-lg antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar (Shared Component) -->
+<nav class="flex justify-between items-center h-20 px-6 md:px-12 w-full sticky top-0 z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant transition-all duration-300" id="mainNav">
+<div class="flex items-center gap-12">
+<a class="font-headline-md text-[28px] font-bold text-primary tracking-tight flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-3xl">token</span>
+            ContentOS
+        </a>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-body-md text-sm font-medium text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#features">Platform</a>
+<a class="font-body-md text-sm font-medium text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#workflow">Engine</a>
+<a class="font-body-md text-sm font-medium text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#agents">AI Team</a>
+<a class="font-body-md text-sm font-medium text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#analytics">Insights</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:flex items-center gap-2 font-label-md text-sm font-semibold text-on-surface hover:text-primary transition-colors px-4 py-2 cursor-pointer">
+                Log In
+            </button>
+<button class="flex items-center gap-2 bg-primary text-white font-label-md text-sm font-semibold px-6 py-3 rounded-full hover:bg-blue-700 transition-all shadow-md hover:shadow-lg cursor-pointer transform hover:-translate-y-0.5">
+                Get Started
+            </button>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="hero-bg pt-28 pb-40 px-6 relative overflow-hidden">
+<div class="max-w-7xl mx-auto text-center relative z-10">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 backdrop-blur-sm border border-blue-100 shadow-sm mb-10 text-primary font-label-md text-sm font-semibold tracking-wide uppercase">
+<span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+<span>Meet ContentOS 2.0</span>
+</div>
+<h1 class="font-display-lg text-5xl md:text-7xl max-w-5xl mx-auto mb-8 text-on-background tracking-tighter leading-tight font-extrabold">
+                    Your AI Content <br class="hidden md:block"/>
+<span class="text-gradient">Operating System</span>
+</h1>
+<p class="font-body-lg text-lg md:text-xl max-w-3xl mx-auto text-slate-600 mb-12 leading-relaxed">
+                    Transform raw trends into published, high-performing content across platforms. Research, strategize, and write with a team of specialized AI agents working for you 24/7.
+                </p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-6 mb-24">
+<button class="w-full sm:w-auto flex items-center justify-center gap-2 bg-primary text-white px-10 py-4 rounded-full font-headline-sm text-lg hover:bg-blue-700 transition-all shadow-xl hover:shadow-blue-500/30 transform hover:-translate-y-1">
+                        Start your free trial
+                        <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+<button class="w-full sm:w-auto flex items-center justify-center gap-3 text-slate-800 px-10 py-4 rounded-full font-headline-sm text-lg glass-btn transition-all transform hover:-translate-y-1">
+<span class="material-symbols-outlined text-[24px] text-primary">play_circle</span>
+                        Watch Demo
+                    </button>
+</div>
+<!-- High-fidelity Screen Preview -->
+<div class="max-w-6xl mx-auto relative rounded-2xl border border-white/40 bg-white/50 p-2 shadow-2xl backdrop-blur-xl overflow-hidden transform hover:scale-[1.01] transition-transform duration-500">
+<div class="rounded-xl overflow-hidden border border-slate-200 shadow-inner relative">
+<div class="absolute inset-0 bg-gradient-to-t from-surface/80 to-transparent pointer-events-none z-10"></div>
+<img alt="Content Workspace Interface" class="w-full h-auto object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCInyQDsIrWrZStUCB8cxooiIu-rs5eXbnQ8mFjT7i2FTjpJGvUIkLL-51tOKTK_bksoxkGrdbAArC9N9wppmR_DCV2ivL1w3PgwETFrr0WapReSImqYrh_T7SJyR5WqUkvAS6ChN7hM1Cn3ZVI5GFymyZIw_-_3aF4igVJZMfeluksRuVuGlJgkv02s_gbha6FptG9xFHONWH4FwLNExyDqcW8rS2RHloR2Y9cxtXE22KPJd86Vtwp"/>
+</div>
+</div>
+</div>
+<!-- Decorative background elements -->
+<div class="absolute top-1/4 left-0 w-96 h-96 bg-blue-300/30 rounded-full blur-[100px] -z-10"></div>
+<div class="absolute bottom-1/4 right-0 w-96 h-96 bg-indigo-300/20 rounded-full blur-[100px] -z-10"></div>
+</section>
+<!-- Social Proof / Logos -->
+<section class="py-16 border-y border-slate-100 bg-white">
+<div class="max-w-7xl mx-auto px-6 text-center">
+<p class="font-label-md text-sm text-slate-400 mb-10 uppercase tracking-[0.2em] font-semibold">Trusted by industry-leading content teams</p>
+<div class="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-70 grayscale hover:grayscale-0 transition-all duration-700">
+<div class="text-2xl font-bold font-headline-md tracking-tighter text-slate-800">Acme Corp</div>
+<div class="text-2xl font-bold font-headline-md tracking-tighter text-slate-800 flex items-center gap-2"><span class="material-symbols-outlined text-3xl">layers</span> Globex</div>
+<div class="text-2xl font-bold font-headline-md tracking-tighter text-slate-800 flex items-center gap-2"><span class="material-symbols-outlined text-3xl">change_history</span> Initech</div>
+<div class="text-2xl font-bold font-headline-md tracking-tighter text-slate-800 flex items-center gap-2"><span class="material-symbols-outlined text-3xl">spa</span> Soylent</div>
+<div class="text-2xl font-bold font-headline-md tracking-tighter text-slate-800">Massive Dynamic</div>
+</div>
+</div>
+</section>
+<!-- Daily Engine (Timeline) -->
+<section class="py-32 px-6 bg-slate-50 relative" id="workflow">
+<div class="max-w-5xl mx-auto">
+<div class="text-center mb-24">
+<h2 class="font-display-lg text-4xl md:text-5xl text-slate-900 mb-6 font-bold tracking-tight">The Content Engine</h2>
+<p class="font-body-lg text-xl text-slate-600 max-w-3xl mx-auto">From idea to published post, your automated workflow designed for velocity and quality.</p>
+</div>
+<div class="relative timeline-line">
+<!-- Step 1 -->
+<div class="relative z-10 flex flex-col md:flex-row items-center justify-between mb-24 group">
+<div class="md:w-5/12 mb-8 md:mb-0 text-right pr-0 md:pr-12">
+<h3 class="text-2xl font-bold text-slate-900 mb-4 font-headline-md">1. Intelligent Ideation</h3>
+<p class="text-slate-600 text-lg">AI agents scan millions of data points across your industry to identify emerging trends and generate high-potential topics.</p>
+</div>
+<div class="absolute left-6 md:left-1/2 w-12 h-12 rounded-full bg-white border-4 border-blue-500 shadow-lg transform md:-translate-x-1/2 flex items-center justify-center transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-blue-500">lightbulb</span>
+</div>
+<div class="md:w-5/12 pl-16 md:pl-12 w-full">
+<div class="bg-white p-6 rounded-2xl shadow-xl border border-slate-100 transform transition-transform group-hover:translate-x-2">
+<img alt="Ideation Dashboard" class="w-full h-48 object-cover rounded-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZ8Pkxe9FEWnmgKpXh9KO70GcJFEArr7HaICL9lYgHQRNCvytpA7EH8AVzpFMzPz7pK5zaTMtEqMtNuePFP4fKjW3Kgk64W8ii1Qz5kNeRuLQCg5c0U9rCl9NvVjZRLJ79R_cxPaI0VWyEZruMGid2aQ-J6Gn9PsTYi5KUj3C8gTfIH-FQEE1oJsXptLJUtdjRILf_mnXOQ0R-EoQNz2yM70rNRKaQ-R0wQpu4pU7YOL-W3R3pZpeC"/>
+</div>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="relative z-10 flex flex-col md:flex-row-reverse items-center justify-between mb-24 group">
+<div class="md:w-5/12 mb-8 md:mb-0 text-left pl-0 md:pl-12">
+<h3 class="text-2xl font-bold text-slate-900 mb-4 font-headline-md">2. Deep Research</h3>
+<p class="text-slate-600 text-lg">Specialized researcher agents compile facts, statistics, and citations, building a comprehensive brief for your content.</p>
+</div>
+<div class="absolute left-6 md:left-1/2 w-12 h-12 rounded-full bg-white border-4 border-indigo-500 shadow-lg transform md:-translate-x-1/2 flex items-center justify-center transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-indigo-500">travel_explore</span>
+</div>
+<div class="md:w-5/12 pr-16 md:pr-12 w-full">
+<div class="bg-white p-6 rounded-2xl shadow-xl border border-slate-100 transform transition-transform group-hover:-translate-x-2">
+<img alt="Research Interface" class="w-full h-48 object-cover rounded-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANy81ztkbu--ljgooNK8Df2gSyVc7HUNm_VXYbw9f-exA5YA5j5Mchy8lHDnZqxA_QWXuaKefEiGVUhqpTizyyGz-jqrK0nHNLgM7bBt4AVox_v1Lw0Ex8GdxocwaX5G63M_1czurRq_iuTBWFbuBbCiHbmSrgnrtnmI43M9__CDdJvs2ehv1k5qH5Rn0WA37gx204xFXQJ1sw4IpXY-3ubyYkPPinNjmpN30hB0W4qea-lI--0vzR"/>
+</div>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="relative z-10 flex flex-col md:flex-row items-center justify-between group">
+<div class="md:w-5/12 mb-8 md:mb-0 text-right pr-0 md:pr-12">
+<h3 class="text-2xl font-bold text-slate-900 mb-4 font-headline-md">3. Multi-Channel Creation</h3>
+<p class="text-slate-600 text-lg">Writers and editors draft content tailored for your blog, social media, and newsletters simultaneously.</p>
+</div>
+<div class="absolute left-6 md:left-1/2 w-12 h-12 rounded-full bg-white border-4 border-teal-500 shadow-lg transform md:-translate-x-1/2 flex items-center justify-center transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-teal-500">edit_document</span>
+</div>
+<div class="md:w-5/12 pl-16 md:pl-12 w-full">
+<div class="bg-white p-6 rounded-2xl shadow-xl border border-slate-100 transform transition-transform group-hover:translate-x-2">
+<img alt="Creation Editor" class="w-full h-48 object-cover rounded-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXvr3891vUOA71Q6WOe1UWaLz9GVF2kH8hdeQ9Cil1Uy4qQqO7_WCYD4rXnqcmI9LPIQs9Qw6QhRwmxKcKalKfu4VfRUT-Tt35I3-LRDPq_FNxWdSv6wmXi7nnXEMlU27941Llyw0RsfWz2bO3FPHPs_2pixbtpvxpJdclXbo4l9Ekd6H5LjXT8u_bdsykyE-tBOA6hj4SkNFQTWSQZBCunk3mVxYhtyLCTx115Pp0AsN77HFWX6VW"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- AI Team Section -->
+<section class="py-32 px-6 bg-white" id="agents">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-20">
+<h2 class="font-display-lg text-4xl md:text-5xl text-slate-900 mb-6 font-bold tracking-tight">Meet Your Dedicated Team</h2>
+<p class="font-body-lg text-xl text-slate-600 max-w-2xl mx-auto">Hire elite AI talent to scale your operations instantly.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Profile Card 1 -->
+<div class="bg-slate-50 rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-2xl transition-all duration-300 group relative overflow-hidden">
+<div class="absolute top-6 right-6 w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+<div class="w-20 h-20 rounded-2xl bg-blue-100 flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl">search_insights</span>
+</div>
+<h3 class="text-xl font-bold text-slate-900 mb-2 font-headline-md">Trend Spotter</h3>
+<p class="text-slate-500 text-sm mb-6">Analyzes Twitter, Reddit &amp; News</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-white border border-slate-200 rounded-full text-xs font-semibold text-slate-600">Research</span>
+<span class="px-3 py-1 bg-white border border-slate-200 rounded-full text-xs font-semibold text-slate-600">Data</span>
+</div>
+</div>
+<!-- Profile Card 2 -->
+<div class="bg-slate-50 rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-2xl transition-all duration-300 group relative overflow-hidden">
+<div class="absolute top-6 right-6 w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+<div class="w-20 h-20 rounded-2xl bg-indigo-100 flex items-center justify-center mb-6 text-indigo-600 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl">edit_note</span>
+</div>
+<h3 class="text-xl font-bold text-slate-900 mb-2 font-headline-md">Lead Writer</h3>
+<p class="text-slate-500 text-sm mb-6">Drafts long-form blog posts</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-white border border-slate-200 rounded-full text-xs font-semibold text-slate-600">SEO</span>
+<span class="px-3 py-1 bg-white border border-slate-200 rounded-full text-xs font-semibold text-slate-600">Copywriting</span>
+</div>
+</div>
+<!-- Profile Card 3 -->
+<div class="bg-slate-50 rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-2xl transition-all duration-300 group relative overflow-hidden">
+<div class="absolute top-6 right-6 w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+<div class="w-20 h-20 rounded-2xl bg-purple-100 flex items-center justify-center mb-6 text-purple-600 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl">share</span>
+</div>
+<h3 class="text-xl font-bold text-slate-900 mb-2 font-headline-md">Social Manager</h3>
+<p class="text-slate-500 text-sm mb-6">Repurposes content for threads</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-white border border-slate-200 rounded-full text-xs font-semibold text-slate-600">Twitter</span>
+<span class="px-3 py-1 bg-white border border-slate-200 rounded-full text-xs font-semibold text-slate-600">LinkedIn</span>
+</div>
+</div>
+<!-- Profile Card 4 -->
+<div class="bg-slate-50 rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-2xl transition-all duration-300 group relative overflow-hidden">
+<div class="absolute top-6 right-6 w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+<div class="w-20 h-20 rounded-2xl bg-teal-100 flex items-center justify-center mb-6 text-teal-600 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl">fact_check</span>
+</div>
+<h3 class="text-xl font-bold text-slate-900 mb-2 font-headline-md">Editor in Chief</h3>
+<p class="text-slate-500 text-sm mb-6">Reviews tone and facts</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-white border border-slate-200 rounded-full text-xs font-semibold text-slate-600">Quality</span>
+<span class="px-3 py-1 bg-white border border-slate-200 rounded-full text-xs font-semibold text-slate-600">Brand Voice</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-32 px-6 bg-slate-900 text-white relative overflow-hidden">
+<div class="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3"></div>
+<div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-indigo-500/20 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/3"></div>
+<div class="max-w-4xl mx-auto text-center relative z-10">
+<h2 class="font-display-lg text-5xl md:text-6xl mb-8 tracking-tight font-extrabold text-white">Ready to scale your content?</h2>
+<p class="font-body-lg text-xl md:text-2xl mb-12 text-slate-300 max-w-2xl mx-auto">Join forward-thinking teams using ContentOS to produce 10x more high-quality content without burning out.</p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+<button class="w-full sm:w-auto bg-primary text-white px-10 py-5 rounded-full font-headline-sm text-xl hover:bg-blue-400 transition-colors shadow-2xl shadow-blue-500/50">
+                        Start your automated engine today
+                    </button>
+<button class="w-full sm:w-auto bg-transparent border border-white/30 text-white px-10 py-5 rounded-full font-headline-sm text-xl hover:bg-white/10 transition-colors backdrop-blur-sm">
+                        Contact Sales
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Simple Footer -->
+<footer class="bg-slate-950 border-t border-slate-800 py-16 px-6">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl">token</span>
+<span class="font-headline-md text-2xl font-bold text-white">ContentOS</span>
+<span class="font-body-md text-sm text-slate-500 ml-4">© 2024</span>
+</div>
+<div class="flex gap-8">
+<a class="font-body-md text-sm text-slate-400 hover:text-white transition-colors" href="#">Privacy</a>
+<a class="font-body-md text-sm text-slate-400 hover:text-white transition-colors" href="#">Terms</a>
+<a class="font-body-md text-sm text-slate-400 hover:text-white transition-colors" href="#">Twitter</a>
+<a class="font-body-md text-sm text-slate-400 hover:text-white transition-colors" href="#">LinkedIn</a>
+</div>
+</div>
+</footer>
+<script>
+        // Simple scroll effect for navbar
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('mainNav');
+            if (window.scrollY > 10) {
+                nav.classList.add('shadow-md');
+                nav.classList.replace('py-4', 'py-2');
+            } else {
+                nav.classList.remove('shadow-md');
+                nav.classList.replace('py-2', 'py-4');
+            }
+        });
+    </script>
+</body></html>

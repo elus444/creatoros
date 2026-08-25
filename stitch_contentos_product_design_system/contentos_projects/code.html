@@ -1,0 +1,450 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>ContentOS - Projects</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed": "#d8e2ff",
+                      "on-primary-fixed": "#001a42",
+                      "surface-container-low": "#f1f3ff",
+                      "inverse-primary": "#adc6ff",
+                      "surface-dim": "#cadaff",
+                      "error": "#ba1a1a",
+                      "on-tertiary-fixed": "#131d24",
+                      "surface-tint": "#005ac2",
+                      "surface": "#f9f9ff",
+                      "on-tertiary": "#ffffff",
+                      "on-primary-container": "#fefcff",
+                      "secondary-container": "#316bf3",
+                      "outline": "#727785",
+                      "tertiary-fixed": "#dae4ee",
+                      "error-container": "#ffdad6",
+                      "primary-container": "#2170e4",
+                      "on-secondary": "#ffffff",
+                      "tertiary": "#535d66",
+                      "tertiary-fixed-dim": "#bec8d2",
+                      "primary-fixed-dim": "#adc6ff",
+                      "on-secondary-fixed-variant": "#003ea8",
+                      "secondary-fixed": "#dbe1ff",
+                      "on-surface": "#041b3c",
+                      "on-tertiary-fixed-variant": "#3e4851",
+                      "surface-variant": "#d7e2ff",
+                      "on-primary": "#ffffff",
+                      "inverse-surface": "#1d3052",
+                      "on-background": "#041b3c",
+                      "on-error": "#ffffff",
+                      "background": "#f9f9ff",
+                      "on-secondary-fixed": "#00174b",
+                      "inverse-on-surface": "#edf0ff",
+                      "secondary-fixed-dim": "#b4c5ff",
+                      "surface-container": "#e8edff",
+                      "surface-bright": "#f9f9ff",
+                      "on-error-container": "#93000a",
+                      "on-tertiary-container": "#fcfcff",
+                      "on-surface-variant": "#424754",
+                      "primary": "#0058be",
+                      "outline-variant": "#c2c6d6",
+                      "secondary": "#0051d5",
+                      "surface-container-high": "#e0e8ff",
+                      "surface-container-highest": "#d7e2ff",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary-container": "#6c767f",
+                      "on-secondary-container": "#fefcff",
+                      "on-primary-fixed-variant": "#004395"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "xs": "4px",
+                      "container-max": "1440px",
+                      "lg": "24px",
+                      "sm": "8px",
+                      "md": "16px",
+                      "xl": "40px",
+                      "base": "4px",
+                      "gutter": "20px"
+              },
+              "fontFamily": {
+                      "label-md": [
+                              "JetBrains Mono"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-sm": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-lg-mobile": [
+                              "Hanken Grotesk"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-md": [
+                              "Hanken Grotesk"
+                      ]
+              },
+              "fontSize": {
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "26px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-sm": [
+                              "18px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "22px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Subtle scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d7e2ff;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #adc6ff;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased flex">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-60 flex flex-col py-lg border-r z-40 bg-surface-container-low border-outline-variant flat no shadows hidden md:flex">
+<!-- Brand / Header -->
+<div class="px-gutter mb-xl flex items-center gap-3">
+<img class="w-10 h-10 rounded-lg object-cover bg-surface-container-highest" data-alt="A clean, modern, abstract geometric logo representing project management and content creation. The logo features interlocking minimalist shapes in a vibrant blue and subtle indigo palette, set against a pristine white background. The style is sharp, flat vector art, communicating corporate intelligence, clarity, and high-performance operations." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBLcWXw1tFd3gMH54tiFBtM8BKNJZSIcXOjQ3kuw2q_aDOk9_hlyYnGPwUISnZDfOpXXAOgiIxRvvfFtFCahYw4ZFGCyxic9tcaSOlJDXFu_jRW5CdNSFCiLyVIqiLHX0Qx61PMDiq1ue4CfZK1s4g9E9PmgQ9sdDR79wTkSY27YhZb28e9IPrepN5nfxeCkS6zsQXS7P2Mtt05jMeveE1nYs24j3yJG7vCbrDMtqqycnl5MqHe72i">
+<div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">Project Alpha</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">Premium Tier</p>
+</div>
+</div>
+<!-- Main Tabs -->
+<div class="flex-1 flex flex-col gap-1 px-sm">
+<a class="group flex items-center gap-3 px-4 py-3 cursor-pointer duration-200 text-on-surface-variant hover:bg-surface-container-high font-label-md text-label-md rounded-xl" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="group flex items-center gap-3 px-4 py-3 cursor-pointer duration-200 text-on-surface-variant hover:bg-surface-container-high font-label-md text-label-md rounded-xl" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="add_circle">add_circle</span>
+                Create
+            </a>
+<a class="group flex items-center gap-3 px-4 py-3 cursor-pointer duration-200 text-on-surface-variant hover:bg-surface-container-high font-label-md text-label-md rounded-xl" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="trending_up">trending_up</span>
+                Trends
+            </a>
+<a class="group flex items-center gap-3 px-4 py-3 cursor-pointer duration-200 text-on-surface-variant hover:bg-surface-container-high font-label-md text-label-md rounded-xl" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="article">article</span>
+                Content
+            </a>
+<a class="group flex items-center gap-3 px-4 py-3 cursor-pointer duration-200 text-on-surface-variant hover:bg-surface-container-high font-label-md text-label-md rounded-xl" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="bar_chart">bar_chart</span>
+                Analytics
+            </a>
+<a class="group flex items-center gap-3 px-4 py-3 cursor-pointer duration-200 text-on-surface-variant hover:bg-surface-container-high font-label-md text-label-md rounded-xl" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="robot_2">robot_2</span>
+                Automation
+            </a>
+<!-- Active Tab -->
+<a class="group flex items-center gap-3 px-4 py-3 cursor-pointer duration-200 bg-primary-container text-on-primary-container rounded-xl font-bold font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="folder_copy" data-weight="fill">folder_copy</span>
+                Projects
+            </a>
+<a class="group flex items-center gap-3 px-4 py-3 cursor-pointer duration-200 text-on-surface-variant hover:bg-surface-container-high font-label-md text-label-md rounded-xl" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+                Settings
+            </a>
+</div>
+<!-- Footer Tabs -->
+<div class="mt-auto flex flex-col gap-1 px-sm border-t border-outline-variant pt-sm">
+<a class="group flex items-center gap-3 px-4 py-3 cursor-pointer duration-200 text-on-surface-variant hover:bg-surface-container-high font-label-md text-label-md rounded-xl" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="help">help</span>
+                Help
+            </a>
+<a class="group flex items-center gap-3 px-4 py-3 cursor-pointer duration-200 text-on-surface-variant hover:bg-surface-container-high font-label-md text-label-md rounded-xl" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+                Logout
+            </a>
+</div>
+</nav>
+<!-- Main Stage -->
+<main class="flex-1 flex flex-col min-h-screen md:ml-60 w-full overflow-hidden">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center h-16 px-gutter w-full sticky top-0 z-50 bg-surface text-primary border-b border-outline-variant flat no shadows">
+<div class="flex items-center gap-md w-full max-w-lg">
+<!-- Mobile Menu Trigger -->
+<button class="md:hidden p-2 -ml-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<div class="font-headline-md text-headline-md font-bold text-primary hidden md:block">ContentOS</div>
+<!-- Search Bar -->
+<div class="relative w-full ml-4 md:ml-8 group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border-outline-variant rounded-full py-2 pl-10 pr-4 font-body-md text-body-md text-on-surface placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all outline-none" placeholder="Search across all workspaces..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low transition-colors cursor-pointer active:scale-95 duration-150 rounded-full">
+<span class="material-symbols-outlined text-[20px]" data-icon="contrast">contrast</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low transition-colors cursor-pointer active:scale-95 duration-150 rounded-full relative">
+<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="h-6 w-px bg-outline-variant mx-2"></div>
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-surface-container-low transition-colors cursor-pointer active:scale-95 duration-150">
+<span class="font-label-md text-label-md text-on-surface-variant">Workspace Selector</span>
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="expand_more">expand_more</span>
+</button>
+<img class="w-8 h-8 rounded-full ml-2 border border-outline-variant object-cover cursor-pointer hover:ring-2 hover:ring-primary/20 transition-all" data-alt="A professional headshot of a corporate user, smiling slightly, well-lit against a minimalist white background. The image serves as a high-quality user avatar, reflecting a calm, competent professional environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgRAvbq_GGFX7ppG2mLB1tJZaNa11jrQzVkMuuHL2Lsiy7VMWqPkzzHmrW9y8OupkxtrZwMFtegW0v5shenwNO9VvYnbXEf2EljpVSLajoSpXK_5X61Rv39tTQwoskVokglMNQHjv8AtQ7lcnJ_jEZBsQX04otNEy477KtlEDv2TMk8Y8xMD71JBSpDex4DlB7TAi1d-ID5obaY0u9SO6OjGp8LxBxiv94QiYdl8hhRvB_NliBbUKo">
+</div>
+</header>
+<!-- Page Content -->
+<div class="flex-1 overflow-y-auto p-4 md:p-lg bg-surface">
+<div class="max-w-[1440px] mx-auto space-y-lg">
+<!-- Header & Actions -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Projects</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Manage and organize your content initiatives.</p>
+</div>
+<button class="bg-[#2563EB] hover:bg-primary-fixed hover:text-on-primary-fixed text-white font-label-md text-label-md px-6 py-2.5 rounded-lg flex items-center gap-2 transition-colors duration-200">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+                        Create Project
+                    </button>
+</div>
+<!-- Filters & Search Bar Row -->
+<div class="flex flex-col md:flex-row justify-between items-center gap-4 bg-surface-container-lowest p-2 rounded-xl border border-[#DCE6F0] shadow-sm">
+<div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
+<button class="px-3 py-1.5 border border-[#DCE6F0] rounded-lg font-label-md text-label-md text-on-surface-variant hover:border-primary hover:text-primary transition-colors flex items-center gap-1.5 bg-surface-container-lowest">
+                            Status: All <span class="material-symbols-outlined text-[16px]" data-icon="arrow_drop_down">arrow_drop_down</span>
+</button>
+<button class="px-3 py-1.5 border border-[#DCE6F0] rounded-lg font-label-md text-label-md text-on-surface-variant hover:border-primary hover:text-primary transition-colors flex items-center gap-1.5 bg-surface-container-lowest">
+                            Niche: Any <span class="material-symbols-outlined text-[16px]" data-icon="arrow_drop_down">arrow_drop_down</span>
+</button>
+<button class="px-3 py-1.5 border border-[#DCE6F0] rounded-lg font-label-md text-label-md text-on-surface-variant hover:border-primary hover:text-primary transition-colors flex items-center gap-1.5 bg-surface-container-lowest">
+                            Date: Newest <span class="material-symbols-outlined text-[16px]" data-icon="arrow_drop_down">arrow_drop_down</span>
+</button>
+</div>
+<div class="relative w-full md:w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]" data-icon="search">search</span>
+<input class="w-full bg-surface border border-[#DCE6F0] rounded-lg py-1.5 pl-9 pr-3 font-body-md text-body-md text-on-surface placeholder:text-outline focus:border-[#3B82F6] focus:ring-2 focus:ring-[#3B82F6]/10 transition-all outline-none" placeholder="Filter projects..." type="text">
+</div>
+</div>
+<!-- Bento Grid Layout for Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest border border-[#DCE6F0] rounded-xl p-[20px] shadow-[0_2px_4px_rgba(23,43,77,0.05)] hover:shadow-[0_10px_25px_rgba(23,43,77,0.10)] transition-all duration-300 flex flex-col group">
+<div class="flex justify-between items-start mb-4 border-b border-[#DCE6F0] pb-3">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Tech Trends 2024</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">Q1 Innovation Reports</p>
+</div>
+<div class="flex items-center gap-1">
+<span class="px-2 py-0.5 bg-surface-container-low text-primary-fixed-dim border border-primary-fixed-dim/20 rounded-full font-label-md text-[10px] flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Active
+                                </span>
+<button class="text-outline-variant hover:text-on-surface p-1 rounded-md hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-2.5 py-1 bg-[#F6F9FC] text-[#5B6B82] border border-[#DCE6F0] rounded-md font-label-md text-[11px]">B2B Tech</span>
+<span class="px-2.5 py-1 bg-[#F6F9FC] text-[#5B6B82] border border-[#DCE6F0] rounded-md font-label-md text-[11px]">CTOs</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-[#0058be] text-[18px]" data-icon="article">article</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">45 pieces of content</span>
+</div>
+</div>
+<div class="mt-auto pt-4 border-t border-[#DCE6F0] flex justify-between items-center">
+<div class="flex flex-col">
+<span class="font-label-md text-[10px] text-outline uppercase tracking-wider">Total Views</span>
+<span class="font-headline-sm text-[16px] text-on-surface">124.5K</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-md text-[10px] text-outline uppercase tracking-wider">Growth</span>
+<span class="font-label-md text-[12px] text-secondary-container flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]" data-icon="trending_up">trending_up</span> +12%
+                                </span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest border border-[#DCE6F0] rounded-xl p-[20px] shadow-[0_2px_4px_rgba(23,43,77,0.05)] hover:shadow-[0_10px_25px_rgba(23,43,77,0.10)] transition-all duration-300 flex flex-col group">
+<div class="flex justify-between items-start mb-4 border-b border-[#DCE6F0] pb-3">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Fitness &amp; Wellness</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">Summer Campaign '24</p>
+</div>
+<div class="flex items-center gap-1">
+<span class="px-2 py-0.5 bg-[#F6F9FC] text-[#5B6B82] border border-[#DCE6F0] rounded-full font-label-md text-[10px] flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span> Draft
+                                </span>
+<button class="text-outline-variant hover:text-on-surface p-1 rounded-md hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-2.5 py-1 bg-[#F6F9FC] text-[#5B6B82] border border-[#DCE6F0] rounded-md font-label-md text-[11px]">Lifestyle</span>
+<span class="px-2.5 py-1 bg-[#F6F9FC] text-[#5B6B82] border border-[#DCE6F0] rounded-md font-label-md text-[11px]">Gen Z</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-[#0058be] text-[18px]" data-icon="article">article</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">12 pieces of content</span>
+</div>
+</div>
+<div class="mt-auto pt-4 border-t border-[#DCE6F0] flex justify-between items-center">
+<div class="flex flex-col">
+<span class="font-label-md text-[10px] text-outline uppercase tracking-wider">Total Views</span>
+<span class="font-headline-sm text-[16px] text-on-surface">0</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-md text-[10px] text-outline uppercase tracking-wider">Growth</span>
+<span class="font-label-md text-[12px] text-outline flex items-center gap-0.5">
+                                     --
+                                </span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest border border-[#DCE6F0] rounded-xl p-[20px] shadow-[0_2px_4px_rgba(23,43,77,0.05)] hover:shadow-[0_10px_25px_rgba(23,43,77,0.10)] transition-all duration-300 flex flex-col group">
+<div class="flex justify-between items-start mb-4 border-b border-[#DCE6F0] pb-3">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">AI in Design</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">Thought Leadership Series</p>
+</div>
+<div class="flex items-center gap-1">
+<span class="px-2 py-0.5 bg-[#fefcff] text-[#ba1a1a] border border-[#ffdad6] rounded-full font-label-md text-[10px] flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-[#ba1a1a]"></span> Archived
+                                </span>
+<button class="text-outline-variant hover:text-on-surface p-1 rounded-md hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-2.5 py-1 bg-[#F6F9FC] text-[#5B6B82] border border-[#DCE6F0] rounded-md font-label-md text-[11px]">Design Tech</span>
+<span class="px-2.5 py-1 bg-[#F6F9FC] text-[#5B6B82] border border-[#DCE6F0] rounded-md font-label-md text-[11px]">Creatives</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-[#0058be] text-[18px]" data-icon="article">article</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">89 pieces of content</span>
+</div>
+</div>
+<div class="mt-auto pt-4 border-t border-[#DCE6F0] flex justify-between items-center">
+<div class="flex flex-col">
+<span class="font-label-md text-[10px] text-outline uppercase tracking-wider">Total Views</span>
+<span class="font-headline-sm text-[16px] text-on-surface">542.1K</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-md text-[10px] text-outline uppercase tracking-wider">Growth</span>
+<span class="font-label-md text-[12px] text-outline flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]" data-icon="trending_flat">trending_flat</span> 0%
+                                </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Empty State (Hidden by default in this mockup, structure provided) -->
+<div class="hidden flex-col items-center justify-center py-24 text-center border-2 border-dashed border-[#DCE6F0] rounded-2xl bg-surface-container-lowest/50">
+<span class="material-symbols-outlined text-[64px] text-primary-fixed-dim mb-4" data-icon="folder_off">folder_off</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">No Projects Found</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mb-6">It looks like there aren't any projects matching your current filters. Adjust your search or create a new one to get started.</p>
+<button class="bg-surface-container-lowest border border-[#DCE6F0] hover:border-primary text-on-surface font-label-md text-label-md px-6 py-2 rounded-lg transition-colors duration-200">
+                        Clear Filters
+                    </button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

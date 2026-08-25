@@ -1,0 +1,275 @@
+<!DOCTYPE html><html lang="en" style="width: 1280px; height: 1024px; overflow: hidden; position: relative;"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>ContentOS Onboarding - Brand Voice</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration (From Design System) -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#dbe1ff",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed": "#131d24",
+                    "on-surface": "#041b3c",
+                    "tertiary-container": "#6c767f",
+                    "inverse-on-surface": "#edf0ff",
+                    "surface-dim": "#cadaff",
+                    "surface-variant": "#d7e2ff",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed": "#00174b",
+                    "error-container": "#ffdad6",
+                    "on-background": "#041b3c",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-tint": "#005ac2",
+                    "secondary": "#0051d5",
+                    "outline-variant": "#c2c6d6",
+                    "on-secondary-fixed-variant": "#003ea8",
+                    "on-primary-fixed": "#001a42",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-container": "#fefcff",
+                    "inverse-surface": "#1d3052",
+                    "on-primary-fixed-variant": "#004395",
+                    "outline": "#727785",
+                    "surface-container-highest": "#d7e2ff",
+                    "primary-fixed-dim": "#adc6ff",
+                    "tertiary-fixed-dim": "#bec8d2",
+                    "on-error": "#ffffff",
+                    "primary-fixed": "#d8e2ff",
+                    "on-tertiary-fixed-variant": "#3e4851",
+                    "primary": "#0058be",
+                    "secondary-container": "#316bf3",
+                    "on-tertiary-container": "#fcfcff",
+                    "error": "#ba1a1a",
+                    "on-error-container": "#93000a",
+                    "primary-container": "#2170e4",
+                    "tertiary-fixed": "#dae4ee",
+                    "surface": "#f9f9ff",
+                    "background": "#f9f9ff",
+                    "surface-container-high": "#e0e8ff",
+                    "surface-bright": "#f9f9ff",
+                    "surface-container-low": "#f1f3ff",
+                    "tertiary": "#535d66",
+                    "on-surface-variant": "#424754",
+                    "on-primary-container": "#fefcff",
+                    "inverse-primary": "#adc6ff",
+                    "secondary-fixed-dim": "#b4c5ff",
+                    "surface-container": "#e8edff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "xl": "40px",
+                    "container-max": "1440px",
+                    "gutter": "20px",
+                    "md": "16px",
+                    "lg": "24px",
+                    "xs": "4px",
+                    "base": "4px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Hanken Grotesk"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["JetBrains Mono"],
+                    "display-lg": ["Hanken Grotesk"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "26px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        /* Base styles to ensure smooth rendering */
+        body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        
+        /* Custom range styling for the personality scale fallback if JS is disabled */
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 2px solid #0058be; /* primary */
+            cursor: pointer;
+            margin-top: -10px;
+            box-shadow: 0 2px 4px rgba(23, 43, 77, 0.1);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #e0e8ff; /* surface-container-high */
+            border-radius: 2px;
+        }
+        input[type=range]:focus { outline: none; }
+    </style>
+</head>
+<body class="bg-surface-container-low min-h-screen flex items-center justify-center p-md md:p-lg relative overflow-hidden text-on-surface">
+<!-- Atmospheric Background Elements (AI Aesthetic) -->
+<div class="fixed top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-secondary-fixed mix-blend-multiply opacity-40 blur-[100px] pointer-events-none"></div>
+<div class="fixed bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-primary-fixed-dim mix-blend-multiply opacity-30 blur-[100px] pointer-events-none"></div>
+<!-- Main Onboarding Modal Card -->
+<main class="w-full max-w-[640px] bg-surface-container-lowest rounded-xl border border-outline-variant shadow-[0_10px_25px_rgba(23,43,77,0.10)] relative z-10 flex flex-col">
+<!-- Card Inner Padding -->
+<div class="p-lg md:p-xl flex flex-col gap-lg">
+<!-- Header & Progress -->
+<header class="flex flex-col gap-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary tracking-wider uppercase">Step 3 of 5</span>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<!-- Minimal Progress Bar -->
+<div class="flex gap-1 h-1.5 w-full">
+<div class="h-full flex-1 bg-primary rounded-full"></div>
+<div class="h-full flex-1 bg-primary rounded-full"></div>
+<div class="h-full flex-1 bg-primary rounded-full relative overflow-hidden">
+<!-- Active Step Indication -->
+<div class="absolute inset-0 bg-white/20 animate-pulse"></div>
+</div>
+<div class="h-full flex-1 bg-surface-container-high rounded-full"></div>
+<div class="h-full flex-1 bg-surface-container-high rounded-full"></div>
+</div>
+</header>
+<!-- Title & Description -->
+<div>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-surface mb-xs flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="tune" style="font-variation-settings: 'FILL' 1;">tune</span>
+                    Define your brand voice
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                    Our AI agents use these guidelines to ensure every piece of content sounds like you.
+                </p>
+</div>
+<hr class="border-outline-variant/40 -mx-lg md:-mx-xl">
+<!-- Form Section -->
+<form class="flex flex-col gap-xl">
+<!-- Tone Selection (Chips) -->
+<fieldset>
+<legend class="font-label-md text-label-md text-on-surface mb-sm flex items-center gap-2">
+                        Tone
+                        <span class="material-symbols-outlined text-[16px] text-tertiary" data-icon="info" title="Select the primary tone for your content.">info</span>
+</legend>
+<div class="flex flex-wrap gap-sm" id="tone-chips">
+<!-- Simulated Radio Buttons disguised as chips -->
+<label class="cursor-pointer group">
+<input checked="" class="peer sr-only" name="tone" type="radio" value="professional">
+<span class="inline-block px-4 py-2 rounded-full border border-outline-variant text-on-surface-variant font-body-md text-body-md transition-all duration-200 peer-checked:bg-primary-container peer-checked:border-primary peer-checked:text-on-primary-container peer-checked:font-medium group-hover:not(.peer-checked):bg-surface-container-low group-hover:not(.peer-checked):text-on-surface">
+                                Professional
+                            </span>
+</label>
+<label class="cursor-pointer group">
+<input class="peer sr-only" name="tone" type="radio" value="humorous">
+<span class="inline-block px-4 py-2 rounded-full border border-outline-variant text-on-surface-variant font-body-md text-body-md transition-all duration-200 peer-checked:bg-primary-container peer-checked:border-primary peer-checked:text-on-primary-container peer-checked:font-medium group-hover:not(.peer-checked):bg-surface-container-low group-hover:not(.peer-checked):text-on-surface">
+                                Humorous
+                            </span>
+</label>
+<label class="cursor-pointer group">
+<input class="peer sr-only" name="tone" type="radio" value="enthusiastic">
+<span class="inline-block px-4 py-2 rounded-full border border-outline-variant text-on-surface-variant font-body-md text-body-md transition-all duration-200 peer-checked:bg-primary-container peer-checked:border-primary peer-checked:text-on-primary-container peer-checked:font-medium group-hover:not(.peer-checked):bg-surface-container-low group-hover:not(.peer-checked):text-on-surface">
+                                Enthusiastic
+                            </span>
+</label>
+<label class="cursor-pointer group">
+<input class="peer sr-only" name="tone" type="radio" value="minimalist">
+<span class="inline-block px-4 py-2 rounded-full border border-outline-variant text-on-surface-variant font-body-md text-body-md transition-all duration-200 peer-checked:bg-primary-container peer-checked:border-primary peer-checked:text-on-primary-container peer-checked:font-medium group-hover:not(.peer-checked):bg-surface-container-low group-hover:not(.peer-checked):text-on-surface">
+                                Minimalist
+                            </span>
+</label>
+<label class="cursor-pointer group">
+<input class="peer sr-only" name="tone" type="radio" value="direct">
+<span class="inline-block px-4 py-2 rounded-full border border-outline-variant text-on-surface-variant font-body-md text-body-md transition-all duration-200 peer-checked:bg-primary-container peer-checked:border-primary peer-checked:text-on-primary-container peer-checked:font-medium group-hover:not(.peer-checked):bg-surface-container-low group-hover:not(.peer-checked):text-on-surface">
+                                Direct
+                            </span>
+</label>
+</div>
+</fieldset>
+<!-- Personality Scale (Custom UI Range) -->
+<fieldset class="relative">
+<legend class="font-label-md text-label-md text-on-surface mb-lg">Personality</legend>
+<div class="relative px-2">
+<!-- Custom track background line -->
+<div class="absolute top-1/2 left-0 right-0 h-1 bg-surface-container-high -translate-y-1/2 rounded-full z-0"></div>
+<!-- Range Input Overlay (Handles interaction) -->
+<input class="w-full relative z-10 bg-transparent appearance-none h-6" id="personality-slider" max="5" min="1" type="range" value="2">
+<!-- Custom Track Fill & Dots (Visual only, controlled by CSS/JS normally, but static representation here for the design) -->
+<div class="absolute top-1/2 left-0 w-1/4 h-1 bg-primary -translate-y-1/2 rounded-full z-0 pointer-events-none" id="slider-fill"></div>
+</div>
+<div class="flex justify-between mt-sm px-1">
+<span class="font-label-md text-label-md text-on-surface-variant">Formal</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Casual</span>
+</div>
+</fieldset>
+<!-- Writing Style Textarea -->
+<fieldset>
+<label class="block font-label-md text-label-md text-on-surface mb-sm flex justify-between items-end" for="writing-style">
+                        Writing Style
+                        <span class="font-body-md text-[12px] text-tertiary font-normal">Optional</span>
+</label>
+<div class="relative">
+<textarea class="w-full p-4 rounded-lg border border-outline-variant bg-surface-container-lowest font-body-md text-body-md text-on-surface placeholder-on-surface-variant/50 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 resize-none transition-all" id="writing-style" placeholder="Any specific phrases to use or avoid? e.g., 'Avoid using corporate jargon. Always refer to our users as creators.'" rows="4"></textarea>
+<!-- AI Agent Indicator (Content Agent hint) -->
+<div class="absolute bottom-3 right-3 flex items-center gap-1 bg-primary-fixed text-on-primary-fixed-variant px-2 py-1 rounded-full font-label-md text-[10px]">
+<span class="material-symbols-outlined text-[12px]" data-icon="edit">edit</span>
+                            Content Agent
+                        </div>
+</div>
+</fieldset>
+</form>
+</div>
+<!-- Footer Actions -->
+<footer class="bg-surface p-md md:p-lg border-t border-outline-variant/40 rounded-b-xl flex items-center justify-between">
+<button class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors px-4 py-2 rounded-lg hover:bg-surface-container-low">
+                Back
+            </button>
+<button class="bg-primary text-on-primary hover:bg-on-primary-fixed-variant transition-colors px-6 py-3 rounded-lg font-label-md text-label-md flex items-center gap-2 shadow-sm">
+                Next: Content Preferences
+                <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</footer>
+</main>
+<!-- Simple script to make the slider fill width update visually in the mockup -->
+<script>
+        const slider = document.getElementById('personality-slider');
+        const fill = document.getElementById('slider-fill');
+        
+        if(slider && fill) {
+            slider.addEventListener('input', (e) => {
+                const value = e.target.value;
+                const min = e.target.min || 1;
+                const max = e.target.max || 5;
+                const percentage = ((value - min) / (max - min)) * 100;
+                fill.style.width = `${percentage}%`;
+            });
+        }
+    </script>
+<div id="snapdom-sandbox" data-snapdom-sandbox="true" aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; width: 0px; height: 0px; overflow: hidden;"></div></body></html>

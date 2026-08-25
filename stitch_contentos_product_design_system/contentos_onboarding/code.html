@@ -1,0 +1,302 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>ContentOS - Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f9f9ff",
+                        "tertiary": "#535d66",
+                        "surface-dim": "#cadaff",
+                        "error-container": "#ffdad6",
+                        "outline": "#727785",
+                        "primary-fixed": "#d8e2ff",
+                        "surface-tint": "#005ac2",
+                        "on-surface-variant": "#424754",
+                        "on-primary-fixed-variant": "#004395",
+                        "inverse-primary": "#adc6ff",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#f9f9ff",
+                        "secondary-fixed": "#dbe1ff",
+                        "on-error": "#ffffff",
+                        "on-secondary-container": "#fefcff",
+                        "inverse-surface": "#1d3052",
+                        "primary-container": "#2170e4",
+                        "surface-container-high": "#e0e8ff",
+                        "primary": "#0058be",
+                        "outline-variant": "#c2c6d6",
+                        "surface-container-low": "#f1f3ff",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed-variant": "#003ea8",
+                        "on-secondary-fixed": "#00174b",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#dae4ee",
+                        "on-primary-fixed": "#001a42",
+                        "primary-fixed-dim": "#adc6ff",
+                        "on-primary-container": "#fefcff",
+                        "on-background": "#041b3c",
+                        "on-tertiary-fixed-variant": "#3e4851",
+                        "tertiary-fixed-dim": "#bec8d2",
+                        "secondary": "#0051d5",
+                        "on-error-container": "#93000a",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#6c767f",
+                        "surface-container": "#e8edff",
+                        "secondary-container": "#316bf3",
+                        "on-tertiary-fixed": "#131d24",
+                        "on-tertiary-container": "#fcfcff",
+                        "surface-variant": "#d7e2ff",
+                        "surface-bright": "#f9f9ff",
+                        "on-surface": "#041b3c",
+                        "inverse-on-surface": "#edf0ff",
+                        "surface-container-highest": "#d7e2ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "20px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "container-max": "1440px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "xl": "40px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Hanken Grotesk"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["JetBrains Mono"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .step-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            transform: translateY(20px);
+        }
+        .step-content.active {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .progress-bar-fill {
+            transition: width 0.4s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex items-center justify-center p-md md:p-lg">
+<!-- Main Onboarding Container -->
+<main class="w-full max-w-[800px] bg-surface-container-lowest rounded-xl shadow-[0_10px_25px_rgba(23,43,77,0.10)] border border-outline-variant overflow-hidden flex flex-col min-h-[600px] relative">
+<!-- Header / Progress -->
+<header class="p-lg border-b border-outline-variant flex flex-col gap-sm z-10 bg-surface-container-lowest relative">
+<div class="flex justify-between items-center w-full">
+<div class="font-headline-md text-headline-md text-primary font-bold">ContentOS</div>
+<div class="font-label-md text-label-md text-tertiary" id="step-indicator">Step 1 of 5</div>
+</div>
+<!-- Progress Bar -->
+<div class="h-1 w-full bg-surface-container-high rounded-full overflow-hidden mt-2">
+<div class="h-full bg-primary progress-bar-fill" id="progress-bar" style="width: 20%;"></div>
+</div>
+</header>
+<!-- Content Area -->
+<section class="flex-grow p-xl flex flex-col relative overflow-y-auto">
+<!-- Step 1: Welcome -->
+<div class="step-content active flex-col items-center justify-center h-full text-center gap-lg" id="step-1">
+<div class="w-24 h-24 bg-primary-fixed rounded-full flex items-center justify-center mb-md animate-pulse">
+<span class="material-symbols-outlined text-[48px] text-primary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-surface">Welcome to ContentOS</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg mx-auto">
+                    Let's set up your intelligent content engine. We'll capture your brand's unique voice and configure your primary publishing channels to streamline your workflow.
+                </p>
+<div class="mt-xl">
+<button class="bg-primary text-on-primary px-xl py-sm rounded-lg font-label-md text-label-md hover:bg-surface-tint transition-colors shadow-[0_2px_4px_rgba(23,43,77,0.05)]" onclick="nextStep(2)" type="button">
+                        Get Started
+                    </button>
+</div>
+</div>
+<!-- Step 2: Project Creation -->
+<div class="step-content flex-col gap-lg w-full max-w-2xl mx-auto" id="step-2">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Project Foundation</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Define the core parameters of your content engine.</p>
+</div>
+<div class="flex flex-col gap-md">
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface">Project Name</label>
+<input class="border border-outline-variant rounded-lg p-sm font-body-md focus:border-primary focus:ring-2 focus:ring-primary/10 outline-none transition-all bg-transparent text-on-surface w-full" placeholder="e.g., Tech Insights Blog" type="text">
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface">Primary Niche</label>
+<select class="border border-outline-variant rounded-lg p-sm font-body-md focus:border-primary focus:ring-2 focus:ring-primary/10 outline-none transition-all bg-transparent text-on-surface w-full appearance-none">
+<option value="">Select Niche...</option>
+<option value="saas">SaaS &amp; Technology</option>
+<option value="finance">Finance &amp; Fintech</option>
+<option value="health">Health &amp; Wellness</option>
+<option value="education">Education &amp; E-learning</option>
+</select>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface">Target Audience</label>
+<textarea class="border border-outline-variant rounded-lg p-sm font-body-md focus:border-primary focus:ring-2 focus:ring-primary/10 outline-none transition-all bg-transparent text-on-surface w-full min-h-[100px] resize-none" placeholder="Briefly describe who you are writing for..."></textarea>
+</div>
+</div>
+<div class="mt-auto pt-lg flex justify-between">
+<button class="text-tertiary hover:bg-surface-container-high px-lg py-sm rounded-lg font-label-md text-label-md transition-colors" onclick="nextStep(1)" type="button">Back</button>
+<button class="bg-primary text-on-primary px-xl py-sm rounded-lg font-label-md text-label-md hover:bg-surface-tint transition-colors shadow-[0_2px_4px_rgba(23,43,77,0.05)]" onclick="nextStep(3)" type="button">Continue</button>
+</div>
+</div>
+<!-- Step 3: Brand Voice -->
+<div class="step-content flex-col gap-lg w-full max-w-2xl mx-auto" id="step-3">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Brand Voice</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Calibrate the AI to match your desired tone and personality.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Tone Selection -->
+<div class="flex flex-col gap-sm border border-outline-variant rounded-lg p-md hover:border-primary cursor-pointer transition-colors relative group">
+<div class="absolute inset-0 bg-primary/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-center gap-sm z-10">
+<span class="material-symbols-outlined text-primary">psychology</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Professional</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant z-10">Authoritative, clear, and objective. Best for B2B and technical content.</p>
+</div>
+<div class="flex flex-col gap-sm border-2 border-primary bg-primary/5 rounded-lg p-md cursor-pointer transition-colors relative">
+<div class="flex items-center gap-sm z-10">
+<span class="material-symbols-outlined text-primary">chat_bubble</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Conversational</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant z-10">Approachable, friendly, and engaging. Ideal for blogs and newsletters.</p>
+<div class="absolute top-sm right-sm text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-xs mt-md">
+<label class="font-label-md text-label-md text-on-surface">Custom Instructions (Optional)</label>
+<textarea class="border border-outline-variant rounded-lg p-sm font-body-md focus:border-primary focus:ring-2 focus:ring-primary/10 outline-none transition-all bg-transparent text-on-surface w-full min-h-[100px] resize-none" placeholder="e.g., Avoid jargon, use short sentences, prefer active voice..."></textarea>
+</div>
+<div class="mt-auto pt-lg flex justify-between">
+<button class="text-tertiary hover:bg-surface-container-high px-lg py-sm rounded-lg font-label-md text-label-md transition-colors" onclick="nextStep(2)" type="button">Back</button>
+<button class="bg-primary text-on-primary px-xl py-sm rounded-lg font-label-md text-label-md hover:bg-surface-tint transition-colors shadow-[0_2px_4px_rgba(23,43,77,0.05)]" onclick="nextStep(4)" type="button">Continue</button>
+</div>
+</div>
+<!-- Step 4: Content Preferences -->
+<div class="step-content flex-col gap-lg w-full max-w-2xl mx-auto" id="step-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Output Preferences</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Select your primary content formats and target platforms.</p>
+</div>
+<div class="flex flex-col gap-md">
+<label class="font-label-md text-label-md text-on-surface">Primary Formats</label>
+<div class="flex flex-wrap gap-sm">
+<button class="border border-primary bg-primary/10 text-primary px-md py-sm rounded-full font-label-md text-label-md transition-colors flex items-center gap-xs" type="button">
+<span class="material-symbols-outlined text-[16px]">article</span> Blog Posts
+                        </button>
+<button class="border border-outline-variant text-on-surface-variant px-md py-sm rounded-full font-label-md text-label-md hover:border-primary hover:text-primary transition-colors flex items-center gap-xs" type="button">
+<span class="material-symbols-outlined text-[16px]">share</span> Social Media
+                        </button>
+<button class="border border-primary bg-primary/10 text-primary px-md py-sm rounded-full font-label-md text-label-md transition-colors flex items-center gap-xs" type="button">
+<span class="material-symbols-outlined text-[16px]">mail</span> Newsletters
+                        </button>
+<button class="border border-outline-variant text-on-surface-variant px-md py-sm rounded-full font-label-md text-label-md hover:border-primary hover:text-primary transition-colors flex items-center gap-xs" type="button">
+<span class="material-symbols-outlined text-[16px]">campaign</span> Ad Copy
+                        </button>
+</div>
+</div>
+<div class="flex flex-col gap-xs mt-md">
+<label class="font-label-md text-label-md text-on-surface">Target Cadence</label>
+<select class="border border-outline-variant rounded-lg p-sm font-body-md focus:border-primary focus:ring-2 focus:ring-primary/10 outline-none transition-all bg-transparent text-on-surface w-full appearance-none">
+<option value="daily">Daily Generation</option>
+<option selected="" value="weekly">Weekly Batches</option>
+<option value="monthly">Monthly Planning</option>
+</select>
+</div>
+<div class="mt-auto pt-lg flex justify-between">
+<button class="text-tertiary hover:bg-surface-container-high px-lg py-sm rounded-lg font-label-md text-label-md transition-colors" onclick="nextStep(3)" type="button">Back</button>
+<button class="bg-primary text-on-primary px-xl py-sm rounded-lg font-label-md text-label-md hover:bg-surface-tint transition-colors shadow-[0_2px_4px_rgba(23,43,77,0.05)]" onclick="nextStep(5)" type="button">Finalize Setup</button>
+</div>
+</div>
+<!-- Step 5: Completion -->
+<div class="step-content flex-col items-center justify-center h-full text-center gap-lg" id="step-5">
+<div class="w-24 h-24 bg-primary-fixed rounded-full flex items-center justify-center mb-md relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/20 animate-ping"></div>
+<span class="material-symbols-outlined text-[48px] text-primary relative z-10" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<h2 class="font-display-lg text-display-lg text-on-surface">Your AI Content Engine is Ready</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md mx-auto">
+                    Project Alpha has been configured. We are initializing your bespoke AI models based on your brand voice and preferences.
+                </p>
+<div class="mt-xl flex gap-md">
+<button class="bg-primary text-on-primary px-xl py-sm rounded-lg font-label-md text-label-md hover:bg-surface-tint transition-colors shadow-[0_2px_4px_rgba(23,43,77,0.05)] flex items-center gap-sm" type="button">
+                        Enter Dashboard <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<script>
+        function nextStep(stepNumber) {
+            // Hide all steps
+            document.querySelectorAll('.step-content').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            // Show target step
+            const targetStep = document.getElementById(`step-${stepNumber}`);
+            if (targetStep) {
+                // Small delay to allow display:flex to apply before opacity transition
+                setTimeout(() => {
+                    targetStep.classList.add('active');
+                }, 50);
+            }
+
+            // Update Progress Bar & Indicator
+            const progressBar = document.getElementById('progress-bar');
+            const stepIndicator = document.getElementById('step-indicator');
+            
+            const progressPercentage = (stepNumber / 5) * 100;
+            progressBar.style.width = `${progressPercentage}%`;
+            
+            if (stepNumber < 5) {
+                stepIndicator.textContent = `Step ${stepNumber} of 4`;
+            } else {
+                 stepIndicator.textContent = `Setup Complete`;
+            }
+        }
+    </script>
+</body></html>
