@@ -17,4 +17,4 @@ EXPOSE 3000
 HEALTHCHECK --interval=10s --timeout=5s --start-period=15s --retries=10 \
     CMD node -e "require('http').get('http://localhost:3000', r => process.exit(r.statusCode < 500 ? 0 : 1)).on('error', () => process.exit(1))"
 
-CMD ["npm", "run", "start", "--", "-H", "0.0.0.0", "-p", "3000"]
+CMD ["sh", "-c", "npm run start -- -H 0.0.0.0 -p ${PORT:-3000}"]
