@@ -1,0 +1,109 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: creatoros-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-creatoros}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-creatoros_dev_password}
+      POSTGRES_DB: ${POSTGRES_DB:-creatoros}
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-creatoros} -d ${POSTGRES_DB:-creatoros}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: creatoros-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    container_name: creatoros-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      # Only DATABASE_URL/REDIS_URL are forced here, because they MUST point
+      # at the in-network Compose service names ("postgres"/"redis") rather
+      # than whatever host/port your .env uses for a native (non-Docker) run.
+      # Every other setting (CORS_ORIGINS, FRONTEND_URL,
+      # STORAGE_PUBLIC_BASE_URL, ACCESS_TOKEN_EXPIRE_MINUTES, OAuth client
+      # secrets, provider keys, etc.) comes ONLY from env_file above, so a
+      # production .env is respected as-is instead of being silently
+      # overridden back to localhost. Set real values in .env before
+      # deploying — see .env.example.
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-creatoros}:${POSTGRES_PASSWORD:-creatoros_dev_password}@postgres:5432/${POSTGRES_DB:-creatoros}
+      REDIS_URL: redis://redis:6379/0
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0) if urllib.request.urlopen('http://localhost:8000/health', timeout=3).status == 200 else sys.exit(1)"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        # Baked into the client bundle at build time (Next.js requirement).
+        # Override by setting NEXT_PUBLIC_API_URL in the shell/.env used to
+        # invoke `docker compose build` — defaults to local dev only.
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000/api/v1}
+    container_name: creatoros-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000/api/v1}
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000', r => process.exit(r.statusCode < 500 ? 0 : 1)).on('error', () => process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+    depends_on:
+      backend:
+        condition: service_healthy
+
+  # Optional external n8n (M5). Keep logically separate from FastAPI.
+  # Start with: docker compose --profile automation up -d
+  n8n:
+    profiles: ["automation"]
+    image: n8nio/n8n:latest
+    container_name: creatoros-n8n
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      N8N_HOST: localhost
+      N8N_PORT: 5678
+      N8N_PROTOCOL: http
+    volumes:
+      - n8n_data:/home/node/.n8n
+
+volumes:
+  postgres_data:
+  redis_data:
+  n8n_data:

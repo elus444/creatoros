@@ -1,0 +1,12 @@
+.venv
+__pycache__
+.pytest_cache
+.mypy_cache
+storage
+*.pyc
+tests
+
+# Secrets: never bake these into an image layer.
+.env
+.env.*
+!.env.example

@@ -1,0 +1,12 @@
+"use client";
+
+import { AppShell } from "@/components/layout/app-shell";
+import { RequireAuth } from "@/components/auth/require-auth";
+
+export default function ProtectedLayout({ children }) {
+  return (
+    <RequireAuth>
+      <AppShell>{children}</AppShell>
+    </RequireAuth>
+  );
+}
