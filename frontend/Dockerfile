@@ -1,20 +1,54 @@
-FROM node:22-alpine
+# Multi-stage Dockerfile for Next.js frontend
+# Stage 1: Builder
+FROM node:18-alpine AS builder
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./
+# Copy package files
+COPY frontend/package.json frontend/package-lock.json ./
+
+# Install dependencies
 RUN npm ci
 
-COPY . .
+# Copy source code
+COPY frontend/ .
 
-ARG NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1
-ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
-
+# Build the Next.js application
 RUN npm run build
 
+# Stage 2: Runtime
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Install dumb-init for proper signal handling
+RUN apk add --no-cache dumb-init
+
+# Copy package files
+COPY frontend/package.json frontend/package-lock.json ./
+
+# Install only production dependencies
+RUN npm ci --only=production
+
+# Copy built application from builder
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/public ./public
+
+# Create non-root user
+RUN addgroup -g 1001 -S nodejs && adduser -S nextjs -u 1001
+
+USER nextjs
+
+# Expose port
 EXPOSE 3000
 
-HEALTHCHECK --interval=10s --timeout=5s --start-period=15s --retries=10 \
-    CMD node -e "require('http').get('http://localhost:3000', r => process.exit(r.statusCode < 500 ? 0 : 1)).on('error', () => process.exit(1))"
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+  CMD node -e "require('http').get('http://localhost:3000', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})"
 
-CMD ["sh", "-c", "npm run start -- -H 0.0.0.0 -p ${PORT:-3000}"]
+# Use dumb-init to handle signals properly
+ENTRYPOINT ["dumb-init", "--"]
+
+# Start the application
+CMD ["npm", "start"]
+
