@@ -1,12 +1,60 @@
-.venv
+# Python
 __pycache__
-.pytest_cache
-.mypy_cache
-storage
 *.pyc
-tests
+*.pyo
+*.pyd
+.Python
+*.egg-info
+dist
+build
+.pytest_cache
+.coverage
+htmlcov
+.tox
 
-# Secrets: never bake these into an image layer.
+# Virtual environments
+venv
+env
+ENV
+.venv
+
+# Git
+.git
+.gitignore
+.github
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# Environment files
 .env
-.env.*
-!.env.example
+.env.local
+.env.*.local
+
+# Documentation
+README.md
+CHANGELOG.md
+docs
+
+# CI/CD
+.circleci
+.travis.yml
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Testing
+.pytest
+coverage
+
+# Node (from monorepo)
+frontend
+node_modules
+package.json
+package-lock.json
