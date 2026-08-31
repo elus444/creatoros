@@ -7,8 +7,8 @@ WORKDIR /app
 # Copy package files from frontend
 COPY frontend/package.json frontend/package-lock.json ./
 
-# Install dependencies
-RUN npm ci
+# Install dependencies with legacy peer deps flag to handle optional dependency issue
+RUN npm ci --legacy-peer-deps
 
 # Copy frontend source
 COPY frontend/ .
@@ -28,7 +28,7 @@ RUN apk add --no-cache dumb-init
 COPY frontend/package.json frontend/package-lock.json ./
 
 # Install only production dependencies
-RUN npm ci --only=production
+RUN npm ci --legacy-peer-deps --only=production
 
 # Copy built application
 COPY --from=builder /app/.next ./.next
