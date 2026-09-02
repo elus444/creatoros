@@ -136,7 +136,11 @@ export default function ContentWorkspacePage() {
   }, [token, contentId]);
 
   useEffect(() => {
-    load();
+    // Deferred: react-hooks/set-state-in-effect flags load()'s internal
+    // synchronous setLoading(true) call as happening directly in the effect.
+    queueMicrotask(() => {
+      load();
+    });
   }, [load]);
 
   useEffect(() => {

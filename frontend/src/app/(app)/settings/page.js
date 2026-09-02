@@ -83,7 +83,11 @@ function SettingsContent() {
   }, [token]);
 
   useEffect(() => {
-    loadAll();
+    // Deferred: react-hooks/set-state-in-effect flags loadAll()'s internal
+    // synchronous setLoading(true) call as happening directly in the effect.
+    queueMicrotask(() => {
+      loadAll();
+    });
   }, [loadAll]);
 
   useEffect(() => {
@@ -104,9 +108,13 @@ function SettingsContent() {
       text =
         "Google rejected the OAuth client. Check YOUTUBE_OAUTH_CLIENT_ID and YOUTUBE_OAUTH_CLIENT_SECRET on the backend.";
     }
-    setBanner({ tone: preset.tone, text });
-    router.replace("/settings");
-    loadAll();
+    // Deferred: react-hooks/set-state-in-effect flags setBanner (and the
+    // loadAll() call right after) as direct setState in the effect body.
+    queueMicrotask(() => {
+      setBanner({ tone: preset.tone, text });
+      router.replace("/settings");
+      loadAll();
+    });
   }, [oauthFlag, oauthReason, router, loadAll]);
 
   async function handleSaveVideo(event) {

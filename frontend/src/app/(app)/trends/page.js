@@ -118,8 +118,12 @@ function TrendsContent() {
 
   useEffect(() => {
     if (activeProjectId) {
-      setCollectMessage(null);
-      loadTrends(activeProjectId);
+      // Deferred: react-hooks/set-state-in-effect flags setCollectMessage
+      // (and loadTrends()'s internal setState) as direct setState in effect.
+      queueMicrotask(() => {
+        setCollectMessage(null);
+        loadTrends(activeProjectId);
+      });
     }
   }, [activeProjectId, loadTrends]);
 

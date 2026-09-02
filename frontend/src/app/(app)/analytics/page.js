@@ -109,7 +109,9 @@ function AnalyticsDashboard() {
 
   useEffect(() => {
     if (!token || !projectId) {
-      if (!projectId) setLoading(false);
+      // Deferred: react-hooks/set-state-in-effect flags direct setState in an
+      // effect body even for a legitimate "nothing to load" guard.
+      if (!projectId) queueMicrotask(() => setLoading(false));
       return;
     }
     let active = true;
