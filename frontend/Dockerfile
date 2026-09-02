@@ -38,4 +38,6 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
 # its own: it doesn't reliably honor it in every version, and getting the
 # listening port wrong here means the platform's edge proxy can't reach
 # the container at all. Defaults to 3000 for local/docker-compose use.
-CMD ["sh", "-c", "next start -p ${PORT:-3000} -H 0.0.0.0"]
+# npx (not a bare `next` call) because the local node_modules/.bin isn't
+# on PATH outside of an npm script invocation.
+CMD ["sh", "-c", "npx next start -p ${PORT:-3000} -H 0.0.0.0"]
