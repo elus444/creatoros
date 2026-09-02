@@ -1,0 +1,16 @@
+node_modules
+.next
+out
+.git
+.gitignore
+.env
+.env.local
+.env.*.local
+npm-debug.log*
+README.md
+e2e
+playwright-report
+test-results
+.vscode
+.idea
+*.swp
