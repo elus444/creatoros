@@ -34,6 +34,8 @@ EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
   CMD node -e "require('http').get('http://localhost:'+(process.env.PORT||3000), r => process.exit(r.statusCode < 500 ? 0 : 1)).on('error', () => process.exit(1))"
 
-# next start reads $PORT automatically (Railway/most PaaS inject it) and
-# binds all interfaces by default.
-CMD ["npm", "start"]
+# Explicit -p/-H rather than relying on `next start` to pick up $PORT on
+# its own: it doesn't reliably honor it in every version, and getting the
+# listening port wrong here means the platform's edge proxy can't reach
+# the container at all. Defaults to 3000 for local/docker-compose use.
+CMD ["sh", "-c", "next start -p ${PORT:-3000} -H 0.0.0.0"]
