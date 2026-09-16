@@ -76,6 +76,41 @@ def _create_project(client: TestClient, headers: dict[str, str]) -> str:
     return response.json()["id"]
 
 
+def test_automation_list_projects_requires_secret(client: TestClient) -> None:
+    response = client.get("/api/v1/automation/projects")
+    assert response.status_code == 401
+
+
+def test_automation_list_projects_spans_every_user(
+    client: TestClient,
+    auth_headers: dict[str, str],
+    automation_headers: dict[str, str],
+) -> None:
+    """n8n has no per-user login -- this must return every project, not
+    just the one owned by whichever user happens to be logged in."""
+    project_id = _create_project(client, auth_headers)
+
+    other_register = client.post(
+        "/api/v1/auth/register",
+        json={"email": "other-creator@example.com", "password": "securepass1"},
+    )
+    assert other_register.status_code == 201
+    other_headers = {"Authorization": f"Bearer {other_register.json()['access_token']}"}
+    other_project = client.post(
+        "/api/v1/projects",
+        json={"name": "Other Project", "niche": "cooking"},
+        headers=other_headers,
+    )
+    assert other_project.status_code == 201
+    other_project_id = other_project.json()["id"]
+
+    response = client.get("/api/v1/automation/projects", headers=automation_headers)
+    assert response.status_code == 200
+    ids = {p["id"] for p in response.json()}
+    assert project_id in ids
+    assert other_project_id in ids
+
+
 def test_automation_collect_requires_secret(
     client: TestClient, auth_headers: dict[str, str]
 ) -> None:

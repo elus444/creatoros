@@ -45,6 +45,9 @@ class AutomationService:
             )
         return project
 
+    def list_all_projects(self) -> list[Project]:
+        return self.projects.list_all()
+
     def enqueue_trend_collect(
         self,
         *,

@@ -62,6 +62,19 @@ http://localhost:8000/api/v1
 
 ## Endpoint reference
 
+### 0. List projects (for looping)
+
+```http
+GET /api/v1/automation/projects
+```
+
+Returns every project across every user -- `[{ "id", "name", "niche" }, ...]`.
+A scheduled n8n workflow has no per-user login, so it can't call
+`GET /projects` (JWT-scoped, one user's projects only). Use this endpoint
+instead, then loop `trends/collect` / `content/generate` over each `id`
+(n8n: `splitInBatches` with `batchSize: 1`, no IF gate needed -- an empty
+list simply runs the loop zero times). Synchronous, not a background job.
+
 ### 1. Collect trends
 
 ```http
@@ -163,26 +176,35 @@ n8n can notify when `status === "completed"` and use `content_id` in the message
 
 ## Suggested n8n workflows
 
+Both workflows below run for **every** project, not one hardcoded id --
+fetch the list once per run, then loop.
+
 ### Workflow 1 — Daily trend collection
 
 ```text
 Cron (every morning)
-  → HTTP Request POST /automation/trends/collect
-       Headers: X-Automation-Secret, Idempotency-Key=collect-{{$today}}
-       Body: { "project_id": "..." }
-  → (optional) Wait / poll GET /automation/jobs/{{job_id}}
+  → HTTP Request GET /automation/projects   (Headers: X-Automation-Secret)
+  → splitInBatches (batchSize: 1)
+      onEachBatch:
+        → HTTP Request POST /automation/trends/collect
+             Headers: X-Automation-Secret, Idempotency-Key=collect-{{$json.id}}-{{$today}}
+             Body: { "project_id": "={{ $json.id }}" }
+        → nextBatch
 ```
 
 ### Workflow 2 — Content generation + notify
 
 ```text
 Trigger (after collect, or separate cron)
-  → HTTP Request POST /automation/content/generate
-       Headers: X-Automation-Secret, Idempotency-Key=generate-{{$today}}
-       Body: { "project_id": "..." }
-  → Loop / Wait until GET /automation/jobs/{{job_id}} status is completed|failed
-  → IF completed → Slack/Email/Discord notification with content_id
-  → IF failed → alert with job.error
+  → HTTP Request GET /automation/projects   (Headers: X-Automation-Secret)
+  → splitInBatches (batchSize: 1)
+      onEachBatch:
+        → HTTP Request POST /automation/content/generate
+             Headers: X-Automation-Secret, Idempotency-Key=generate-{{$json.id}}-{{$today}}
+             Body: { "project_id": "={{ $json.id }}" }
+        → nextBatch
+  → (completion/failure per job arrives separately via N8N_NOTIFY_WEBHOOK_URL,
+     not by polling here -- see the Job Completion Webhook workflow)
 ```
 
 Polling tip: wait 5–15s between status checks; content generation can take 10–60s.

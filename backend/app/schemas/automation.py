@@ -44,3 +44,16 @@ class AutomationJobPublic(BaseModel):
 class AutomationStatusPublic(BaseModel):
     automation_configured: bool
     recent_jobs: list[AutomationJobPublic]
+
+
+class AutomationProjectSummary(BaseModel):
+    """Enough for n8n to loop collect/generate over every project.
+
+    Deliberately excludes audience/brand_voice -- n8n only needs the id
+    to call back into automation endpoints, plus name/niche for readable
+    execution logs and Idempotency-Key construction.
+    """
+
+    id: UUID
+    name: str
+    niche: str | None = None

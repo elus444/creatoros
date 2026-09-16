@@ -20,6 +20,17 @@ class ProjectService:
         )
         return list(self.db.scalars(stmt))
 
+    def list_all(self) -> list[Project]:
+        """Every project across every user -- automation-only (M5).
+
+        n8n has no per-user login; a scheduled workflow needs to discover
+        every project to run collect/generate for, not just one hardcoded
+        id. Gated by the automation secret at the route, never exposed to
+        a regular JWT-authenticated user.
+        """
+        stmt = select(Project).order_by(Project.created_at.asc())
+        return list(self.db.scalars(stmt))
+
     def create(self, user: User, payload: ProjectCreate) -> Project:
         project = Project(
             user_id=user.id,

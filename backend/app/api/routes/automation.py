@@ -13,6 +13,7 @@ from app.schemas.automation import (
     AutomationCoachRequest,
     AutomationJobAccepted,
     AutomationJobPublic,
+    AutomationProjectSummary,
     AutomationStatusPublic,
     AutomationTrendCollectRequest,
 )
@@ -46,6 +47,25 @@ def require_automation_secret(
 
 def _rate_automation(request: Request) -> None:
     enforce_request_limit("automation", request)
+
+
+@router.get(
+    "/projects",
+    response_model=list[AutomationProjectSummary],
+    dependencies=[Depends(require_automation_secret), Depends(_rate_automation)],
+)
+def automation_list_projects(
+    automation_service: AutomationServiceDep,
+) -> list[AutomationProjectSummary]:
+    """Every project, across every user -- so n8n can loop collect/generate
+    over all of them instead of one hardcoded project_id.
+
+    Synchronous: this is a plain list query, not AI work, so there is no
+    need to queue it as a background job the way collect/generate are.
+    """
+    projects = automation_service.list_all_projects()
+    return [AutomationProjectSummary.model_validate(p, from_attributes=True) for p in projects]
+
 
 @router.post(
     "/trends/collect",
